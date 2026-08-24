@@ -256,10 +256,21 @@
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="js/main.js"></script>
   <script>
     AOS.init({ duration: 800, once: true, offset: 100 });
+    
+    // Hero GSAP Animation
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof gsap !== 'undefined') {
+        const tl = gsap.timeline();
+        tl.from(".gs-title", {y: 50, opacity: 0, duration: 0.8, ease: "power3.out"})
+          .from(".gs-desc", {y: 30, opacity: 0, duration: 0.8, ease: "power3.out"}, "-=0.6")
+          .from(".gs-btns", {y: 20, opacity: 0, duration: 0.6, ease: "power3.out"}, "-=0.4");
+      }
+    });
   </script>
 </body>
 </html>

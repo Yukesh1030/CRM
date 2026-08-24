@@ -186,6 +186,11 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   color: #ffffff; /* Default to white for transparent navbar/hero */
 }
 
+/* Ensure outline buttons in normal sections have dark text */
+.section .btn-outline {
+  color: var(--text-dark);
+}
+
 .btn-outline:hover {
   background-color: var(--primary);
   color: var(--text-dark);
