@@ -73,11 +73,11 @@
       <img src="assets/Brand-logo.webp" alt="STACKLY">
     </div>
     <div class="sidebar-menu">
-      <a href="#" class="sidebar-link active"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="#" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> My Projects</a>
-      <a href="#" class="sidebar-link"><i class="fa-solid fa-ticket"></i> Support Tickets</a>
-      <a href="#" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
-      <a href="#" class="sidebar-link"><i class="fa-solid fa-user"></i> Profile</a>
+      <a href="ClientDashboard.html" class="sidebar-link active"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="ClientProjects.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> My Projects</a>
+      <a href="ClientTickets.html" class="sidebar-link"><i class="fa-solid fa-ticket"></i> Support Tickets</a>
+      <a href="ClientInvoices.html" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
+      <a href="ClientProfile.html" class="sidebar-link"><i class="fa-solid fa-user"></i> Profile</a>
     </div>
     <div style="padding: 20px; border-top: 1px solid var(--border-color);">
       <a href="Login.html" class="sidebar-link" style="padding: 0;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
@@ -203,5 +203,43 @@
       }
     });
   </script>
+<script>document.addEventListener('DOMContentLoaded', () => {
+      // Hijack Links and Forms for Demo
+      document.querySelectorAll('a').forEach(link => {
+        if (!link.closest('.sidebar') && !link.closest('.sidebar-menu')) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '404.html';
+          });
+        }
+      });
+      document.querySelectorAll('button').forEach(btn => {
+         if(!btn.closest('.sidebar') && !btn.closest('form') && !btn.closest('.mobile-toggle') && !btn.closest('.chat-input') && !btn.closest('.action-btns')) {
+             btn.addEventListener('click', (e) => {
+                 e.preventDefault();
+                 window.location.href = '404.html';
+             });
+         }
+      });
+      document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          let isValid = true;
+          form.querySelectorAll('input, select, textarea').forEach(input => {
+            if (input.required && !input.value.trim()) {
+              isValid = false;
+              input.style.borderColor = 'red';
+            } else {
+              input.style.borderColor = '';
+            }
+          });
+          if (isValid) {
+            window.location.href = '404.html';
+          } else {
+            alert('Please fill out all required fields.');
+          }
+        });
+      });
+});</script>
 </body>
 </html>

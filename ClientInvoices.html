@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoices - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--bg-offwhite); display: flex; height: 100vh; overflow: hidden; }
+    
+    /* Sidebar */
+    .sidebar { width: 260px; background: var(--secondary); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: var(--transition); flex-shrink: 0; }
+    .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); }
+    .sidebar-header img { height: 30px; }
+    .sidebar-menu { flex: 1; padding: 20px 0; overflow-y: auto; }
+    .sidebar-link { display: flex; align-items: center; gap: 15px; padding: 12px 24px; color: var(--text-muted); transition: var(--transition); }
+    .sidebar-link:hover, .sidebar-link.active { background: var(--primary-light); color: var(--text-dark); border-left: 3px solid var(--primary); }
+    
+    /* Main Content */
+    .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    
+    /* Header */
+    .top-header { background: var(--secondary); padding: 15px 30px; display: flex; justify-content: flex-end; align-items: center; box-shadow: var(--shadow-sm); z-index: 10; border-bottom: 1px solid var(--border-color); }
+    .user-profile { display: flex; align-items: center; gap: 15px; }
+    .user-avatar { width: 40px; height: 40px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+    
+    /* Dashboard Area */
+    .dashboard-area { flex: 1; padding: 30px; overflow-y: auto; }
+    
+    /* Section 1: Billing Overview Grid */
+    .billing-overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 30px; }
+    .billing-card { background: var(--secondary); padding: 24px; border-radius: 12px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); }
+    .billing-label { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 5px; }
+    .billing-amount { font-size: 2rem; font-weight: 700; color: var(--text-dark); margin: 0; }
+    
+    .panel { background: var(--secondary); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 24px; border: 1px solid var(--border-color); margin-bottom: 30px; }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+    .panel-header h3 { margin: 0; }
+
+    /* Layout Grid */
+    .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+
+    /* Section 2: Invoice Table */
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+    th { font-weight: 500; color: var(--text-muted); }
+    tr:last-child td { border-bottom: none; }
+    .badge-paid { background: #dcfce7; color: #166534; padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 500; }
+    .badge-unpaid { background: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 500; }
+
+    /* Section 3: Subscription Plan */
+    .plan-card { background: linear-gradient(135deg, var(--bg-dark), #1e293b); color: white; padding: 25px; border-radius: 12px; position: relative; overflow: hidden; }
+    .plan-card h4 { margin: 0 0 5px; color: var(--secondary); font-size: 1.2rem; }
+    .plan-card p { color: #cbd5e1; font-size: 0.9rem; margin-bottom: 20px; }
+    .plan-price { font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: flex-end; gap: 5px; }
+    .plan-price span { font-size: 1rem; font-weight: 400; color: #cbd5e1; margin-bottom: 8px; }
+
+    /* Section 4: Payment Methods */
+    .payment-method { display: flex; align-items: center; justify-content: space-between; padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 15px; }
+    .card-info { display: flex; align-items: center; gap: 15px; }
+    .card-icon { font-size: 1.5rem; color: var(--text-muted); }
+    
+    /* Section 5: Expense Chart (CSS) */
+    .chart-container { display: flex; align-items: flex-end; justify-content: space-between; height: 150px; padding-top: 20px; border-bottom: 1px solid var(--border-color); }
+    .chart-bar-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 12%; }
+    .chart-bar { width: 100%; background: var(--primary-light); border-radius: 4px 4px 0 0; position: relative; transition: height 1s ease-out; height: 0; }
+    .chart-bar:hover { background: var(--primary); }
+    .chart-label { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; position: absolute; left: 20px; padding: 10px; margin-left: -10px; z-index: 20; }
+    
+    @media (max-width: 991px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar { position: fixed; left: -260px; height: 100vh; z-index: 100; box-shadow: var(--shadow-xl); }
+      .sidebar.active { left: 0; }
+      .mobile-toggle { display: block; }
+      .top-header { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/Brand-logo.webp" alt="STACKLY">
+    </div>
+    <div class="sidebar-menu">
+      <a href="ClientDashboard.html" class="sidebar-link"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="ClientProjects.html" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> My Projects</a>
+      <a href="ClientTickets.html" class="sidebar-link"><i class="fa-solid fa-ticket"></i> Support Tickets</a>
+      <a href="ClientInvoices.html" class="sidebar-link active"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
+      <a href="ClientProfile.html" class="sidebar-link"><i class="fa-solid fa-user"></i> Profile</a>
+    </div>
+    <div style="padding: 20px; border-top: 1px solid var(--border-color);">
+      <a href="Login.html" class="sidebar-link" style="padding: 0;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-header">
+      <button class="mobile-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="user-profile">
+        <i class="fa-regular fa-bell" style="font-size: 1.2rem; cursor: pointer; margin-right: 10px;"></i>
+        <div class="user-avatar" id="userAvatarText">C</div>
+        <div style="font-weight: 500;" id="userNameText">Client User</div>
+      </div>
+    </header>
+
+    <div class="dashboard-area gs-dash">
+      
+      <!-- Section 1: Billing Overview -->
+      <div class="billing-overview">
+        <div class="billing-card gs-item">
+          <div class="billing-label">Total Outstanding</div>
+          <p class="billing-amount" style="color: #ef4444;">$3,450.00</p>
+        </div>
+        <div class="billing-card gs-item">
+          <div class="billing-label">Paid This Year</div>
+          <p class="billing-amount" style="color: #22c55e;">$12,800.00</p>
+        </div>
+        <div class="billing-card gs-item">
+          <div class="billing-label">Next Payment Due</div>
+          <p class="billing-amount" style="font-size: 1.5rem; line-height: 2.2rem;">Sep 1st, 2026</p>
+        </div>
+        <div class="billing-card gs-item">
+          <div class="billing-label">Available Credit</div>
+          <p class="billing-amount">$0.00</p>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <div style="display: flex; flex-direction: column; gap: 30px;">
+          
+          <!-- Section 2: Invoice Table -->
+          <div class="panel gs-item" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3>Invoice History</h3>
+              <button class="btn btn-outline" style="padding: 5px 15px; font-size: 0.8rem;"><i class="fa-solid fa-filter"></i> Filter</button>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Invoice ID</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-weight: 500;">INV-2026-089</td>
+                    <td>Aug 15, 2026</td>
+                    <td>$3,450.00</td>
+                    <td><span class="badge-unpaid">Unpaid</span></td>
+                    <td>
+                      <button class="btn btn-primary" style="padding: 4px 10px; font-size: 0.8rem; margin-right: 5px;">Pay Now</button>
+                      <button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8rem;"><i class="fa-solid fa-download"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 500;">INV-2026-074</td>
+                    <td>Jul 15, 2026</td>
+                    <td>$4,200.00</td>
+                    <td><span class="badge-paid">Paid</span></td>
+                    <td><button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8rem;"><i class="fa-solid fa-download"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 500;">INV-2026-061</td>
+                    <td>Jun 15, 2026</td>
+                    <td>$2,100.00</td>
+                    <td><span class="badge-paid">Paid</span></td>
+                    <td><button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8rem;"><i class="fa-solid fa-download"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight: 500;">INV-2026-045</td>
+                    <td>May 15, 2026</td>
+                    <td>$6,500.00</td>
+                    <td><span class="badge-paid">Paid</span></td>
+                    <td><button class="btn btn-outline" style="padding: 4px 10px; font-size: 0.8rem;"><i class="fa-solid fa-download"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 5: Expense Breakdown Chart -->
+          <div class="panel gs-item" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3>Expense Breakdown (6 Months)</h3>
+            </div>
+            <div class="chart-container">
+              <div class="chart-bar-wrapper">
+                <div class="chart-bar gs-chart-bar" data-h="40%"></div>
+                <div class="chart-label">Apr</div>
+              </div>
+              <div class="chart-bar-wrapper">
+                <div class="chart-bar gs-chart-bar" data-h="90%"></div>
+                <div class="chart-label">May</div>
+              </div>
+              <div class="chart-bar-wrapper">
+                <div class="chart-bar gs-chart-bar" data-h="30%"></div>
+                <div class="chart-label">Jun</div>
+              </div>
+              <div class="chart-bar-wrapper">
+                <div class="chart-bar gs-chart-bar" data-h="60%"></div>
+                <div class="chart-label">Jul</div>
+              </div>
+              <div class="chart-bar-wrapper">
+                <div class="chart-bar gs-chart-bar" data-h="50%"></div>
+                <div class="chart-label">Aug</div>
+              </div>
+              <div class="chart-bar-wrapper">
+                <div class="chart-bar gs-chart-bar" data-h="10%" style="background: rgba(239, 68, 68, 0.4);"></div>
+                <div class="chart-label">Sep</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 30px;">
+          
+          <!-- Section 3: Subscription Plan -->
+          <div class="plan-card gs-item">
+            <h4>Enterprise Retainer</h4>
+            <p>Active Subscription</p>
+            <div class="plan-price">$3,450 <span>/ month</span></div>
+            <button class="btn btn-outline" style="width: 100%; border-color: rgba(255,255,255,0.3); color: white;">Manage Plan</button>
+          </div>
+
+          <!-- Section 4: Payment Methods -->
+          <div class="panel gs-item" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3>Payment Methods</h3>
+            </div>
+            
+            <div class="payment-method">
+              <div class="card-info">
+                <i class="fa-brands fa-cc-visa card-icon" style="color: #1a1f71;"></i>
+                <div>
+                  <div style="font-weight: 500;">Visa ending in 4242</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Expires 12/28</div>
+                </div>
+              </div>
+              <span class="badge-paid" style="background: #e0f2fe; color: #0284c7;">Default</span>
+            </div>
+
+            <div class="payment-method">
+              <div class="card-info">
+                <i class="fa-brands fa-cc-mastercard card-icon" style="color: #eb001b;"></i>
+                <div>
+                  <div style="font-weight: 500;">Mastercard ending in 8899</div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Expires 09/27</div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-outline" style="width: 100%;"><i class="fa-solid fa-plus"></i> Add Payment Method</button>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar Toggle
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('active');
+        });
+      }
+
+      // GSAP Animations
+      gsap.from('.gs-item', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" });
+
+      // Animate Chart Bars
+      setTimeout(() => {
+        document.querySelectorAll('.gs-chart-bar').forEach(bar => {
+          bar.style.height = bar.getAttribute('data-h');
+        });
+      }, 300);
+
+      // Load dynamic username
+      const storedName = localStorage.getItem('crm_username');
+      if (storedName) {
+        document.getElementById('userNameText').textContent = storedName;
+        document.getElementById('userAvatarText').textContent = storedName.charAt(0).toUpperCase();
+      }
+    });
+  </script>
+<script>document.addEventListener('DOMContentLoaded', () => {
+      // Hijack Links and Forms for Demo
+      document.querySelectorAll('a').forEach(link => {
+        if (!link.closest('.sidebar') && !link.closest('.sidebar-menu')) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '404.html';
+          });
+        }
+      });
+      document.querySelectorAll('button').forEach(btn => {
+         if(!btn.closest('.sidebar') && !btn.closest('form') && !btn.closest('.mobile-toggle') && !btn.closest('.chat-input') && !btn.closest('.action-btns')) {
+             btn.addEventListener('click', (e) => {
+                 e.preventDefault();
+                 window.location.href = '404.html';
+             });
+         }
+      });
+      document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          let isValid = true;
+          form.querySelectorAll('input, select, textarea').forEach(input => {
+            if (input.required && !input.value.trim()) {
+              isValid = false;
+              input.style.borderColor = 'red';
+            } else {
+              input.style.borderColor = '';
+            }
+          });
+          if (isValid) {
+            window.location.href = '404.html';
+          } else {
+            alert('Please fill out all required fields.');
+          }
+        });
+      });
+});</script>
+</body>
+</html>
