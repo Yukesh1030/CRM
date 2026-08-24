@@ -204,6 +204,16 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   color: var(--text-dark);
 }
 
+/* Ensure outline buttons in dashboard have dark text/borders */
+.dashboard-area .btn-outline {
+  color: #0f172a !important;
+  border-color: #0f172a !important;
+}
+.dashboard-area .btn-outline:hover {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
 /* Navbar */
 .navbar {
   position: fixed;

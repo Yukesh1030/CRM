@@ -174,95 +174,54 @@
         </div>
       </div>
 
-      <!-- Section 2: Kanban Board -->
+      <!-- Section 2: Pipeline Overview -->
       <div class="panel gs-item">
         <div class="panel-header">
-          <h3>Sales Pipeline Board</h3>
+          <h3>Pipeline Overview</h3>
           <button class="btn btn-primary" style="padding: 8px 15px; font-size: 0.9rem;"><i class="fa-solid fa-plus"></i> New Deal</button>
         </div>
-        <div class="kanban-wrapper">
-          <div class="kanban-board">
-            
-            <div class="kanban-col">
-              <div class="kanban-header">
-                <h4>Qualified Lead</h4>
-                <div class="kanban-count">2</div>
-              </div>
-              <div class="deal-card gs-deal">
-                <img src="assets/deal_logo_1.webp" alt="Deal Image" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-                <p class="deal-title">TechCorp Site Redesign</p>
-                <p class="deal-company">TechCorp Inc.</p>
-                <div class="deal-footer">
-                  <span style="color: var(--accent);">$15,000</span>
-                  <div class="deal-owner">S</div>
-                </div>
-              </div>
-              <div class="deal-card gs-deal">
-                <p class="deal-title">App Development</p>
-                <p class="deal-company">Startup Hub</p>
-                <div class="deal-footer">
-                  <span style="color: var(--accent);">$45,000</span>
-                  <div class="deal-owner">J</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="kanban-col">
-              <div class="kanban-header">
-                <h4>Proposal Sent</h4>
-                <div class="kanban-count">1</div>
-              </div>
-              <div class="deal-card gs-deal">
-                <img src="assets/deal_logo_2.webp" alt="Deal Image" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-                <p class="deal-title">Enterprise CRM Setup</p>
-                <p class="deal-company">Mega Retailers</p>
-                <div class="deal-footer">
-                  <span style="color: var(--accent);">$120,000</span>
-                  <div class="deal-owner">M</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="kanban-col">
-              <div class="kanban-header">
-                <h4>Negotiation</h4>
-                <div class="kanban-count">2</div>
-              </div>
-              <div class="deal-card gs-deal">
-                <p class="deal-title">Annual Marketing Retainer</p>
-                <p class="deal-company">Growth Solutions</p>
-                <div class="deal-footer">
-                  <span style="color: var(--accent);">$60,000</span>
-                  <div class="deal-owner">S</div>
-                </div>
-              </div>
-              <div class="deal-card gs-deal" style="border-left-color: #ef4444;">
-                <img src="assets/deal_logo_1.webp" alt="Deal Image" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
-                <p class="deal-title">Cloud Migration</p>
-                <p class="deal-company">Data Systems</p>
-                <div class="deal-footer">
-                  <span style="color: #ef4444;">$85,000</span>
-                  <div class="deal-owner">J</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="kanban-col">
-              <div class="kanban-header">
-                <h4>Closed Won</h4>
-                <div class="kanban-count">1</div>
-              </div>
-              <div class="deal-card gs-deal" style="border-left-color: #22c55e;">
-                <p class="deal-title">SEO Audit</p>
-                <p class="deal-company">Local Bakery</p>
-                <div class="deal-footer">
-                  <span style="color: #22c55e;">$5,000</span>
-                  <div class="deal-owner">A</div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+        <div class="table-responsive">
+          <table style="width: 100%; border-collapse: collapse; min-width: 800px;">
+            <thead>
+              <tr>
+                <th style="padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem;">Deal Name</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem;">Company</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem;">Stage</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem;">Amount</th>
+                <th style="padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 0.85rem;">Owner</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: 500;">TechCorp Site Redesign</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);">TechCorp Inc.</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);"><span style="background: #e0f2fe; color: #0284c7; padding: 4px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 500;">Qualified Lead</span></td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: 600;">$15,000</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);">Sarah J.</td>
+              </tr>
+              <tr>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: 500;">Enterprise CRM Setup</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);">Mega Retailers</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);"><span style="background: #fef08a; color: #ca8a04; padding: 4px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 500;">Proposal Sent</span></td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: 600;">$120,000</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);">Michael C.</td>
+              </tr>
+              <tr>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: 500;">Cloud Migration</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);">Data Systems</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);"><span style="background: #ffedd5; color: #ea580c; padding: 4px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 500;">Negotiation</span></td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color); font-weight: 600;">$85,000</td>
+                <td style="padding: 15px; border-bottom: 1px solid var(--border-color);">James T.</td>
+              </tr>
+              <tr>
+                <td style="padding: 15px; border-bottom: none; font-weight: 500;">SEO Audit</td>
+                <td style="padding: 15px; border-bottom: none;">Local Bakery</td>
+                <td style="padding: 15px; border-bottom: none;"><span style="background: #dcfce7; color: #16a34a; padding: 4px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 500;">Closed Won</span></td>
+                <td style="padding: 15px; border-bottom: none; font-weight: 600;">$5,000</td>
+                <td style="padding: 15px; border-bottom: none;">Admin</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
