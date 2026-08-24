@@ -189,6 +189,7 @@
                 <div class="kanban-count">2</div>
               </div>
               <div class="deal-card gs-deal">
+                <img src="assets/deal_logo_1.webp" alt="Deal Image" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
                 <p class="deal-title">TechCorp Site Redesign</p>
                 <p class="deal-company">TechCorp Inc.</p>
                 <div class="deal-footer">
@@ -212,6 +213,7 @@
                 <div class="kanban-count">1</div>
               </div>
               <div class="deal-card gs-deal">
+                <img src="assets/deal_logo_2.webp" alt="Deal Image" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
                 <p class="deal-title">Enterprise CRM Setup</p>
                 <p class="deal-company">Mega Retailers</p>
                 <div class="deal-footer">
@@ -235,6 +237,7 @@
                 </div>
               </div>
               <div class="deal-card gs-deal" style="border-left-color: #ef4444;">
+                <img src="assets/deal_logo_1.webp" alt="Deal Image" style="width: 100%; height: 120px; object-fit: cover; border-radius: 4px; margin-bottom: 10px;">
                 <p class="deal-title">Cloud Migration</p>
                 <p class="deal-company">Data Systems</p>
                 <div class="deal-footer">
@@ -434,5 +437,43 @@
       }
     });
   </script>
+<script>document.addEventListener('DOMContentLoaded', () => {
+      // Hijack Links and Forms for Demo
+      document.querySelectorAll('a').forEach(link => {
+        if (!link.closest('.sidebar') && !link.closest('.sidebar-menu')) {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = '404.html';
+          });
+        }
+      });
+      document.querySelectorAll('button').forEach(btn => {
+         if(!btn.closest('.sidebar') && !btn.closest('form') && !btn.closest('.mobile-toggle') && !btn.closest('.chat-input') && !btn.closest('.action-btns')) {
+             btn.addEventListener('click', (e) => {
+                 e.preventDefault();
+                 window.location.href = '404.html';
+             });
+         }
+      });
+      document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          let isValid = true;
+          form.querySelectorAll('input, select').forEach(input => {
+            if (input.required && !input.value.trim()) {
+              isValid = false;
+              input.style.borderColor = 'red';
+            } else {
+              input.style.borderColor = '';
+            }
+          });
+          if (isValid) {
+            window.location.href = '404.html';
+          } else {
+            alert('Please fill out all required fields.');
+          }
+        });
+      });
+});</script>
 </body>
 </html>
