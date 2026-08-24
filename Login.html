@@ -150,14 +150,10 @@
         <a href="404.html">Forgot password?</a>
       </div>
 
-      <button type="submit" class="btn btn-primary gs-item" style="width: 100%; border: none;">Login <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></button>
+      <button type="submit" class="btn btn-primary" style="display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; min-height: 50px !important; background-color: #0f172a !important; color: #ffffff !important; border: none !important; border-radius: 50px !important; margin-top: 10px !important; z-index: 9999 !important;">Login <i class="fa-solid fa-arrow-right" style="margin-left: 8px; color: #ffffff !important;"></i></button>
     </form>
     
-    <div style="background: rgba(0,0,0,0.02); border: 1px dashed var(--border-color); padding: 15px; border-radius: 8px; margin-top: 20px; text-align: left; font-size: 0.8rem; color: var(--text-muted);" class="gs-item">
-      Sample Credentials<br>
-      Email: admin@stackly.com<br>
-      Password: admin123
-    </div>
+
 
     <div class="auth-footer gs-item">
       Don't have an account? <a href="Signup.html">Sign up</a>
@@ -198,6 +194,11 @@
         }
         
         if (isValid) {
+          // Extract username from email and store it
+          const usernamePart = email.split('@')[0];
+          const displayName = usernamePart.charAt(0).toUpperCase() + usernamePart.slice(1);
+          localStorage.setItem('crm_username', displayName);
+
           // Redirect based on role
           if (role === 'Admin') {
             window.location.href = 'AdminDashboard.html';

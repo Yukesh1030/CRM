@@ -89,15 +89,15 @@
     <header class="top-header">
       <button class="mobile-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
       <div class="user-profile">
-        <div class="user-avatar">C</div>
-        <div style="font-weight: 500;">Client User</div>
+        <div class="user-avatar" id="userAvatarText">C</div>
+        <div style="font-weight: 500;" id="userNameText">Client User</div>
       </div>
     </header>
 
     <div class="dashboard-area gs-dash">
       
       <div class="welcome-banner gs-item">
-        <h2>Welcome back, Client!</h2>
+        <h2 id="welcomeText">Welcome back, Client!</h2>
         <p>Here's a summary of your active projects and support tickets. We're here if you need any assistance.</p>
       </div>
 
@@ -182,18 +182,25 @@
       gsap.from('.gs-item', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" });
       gsap.from('.gs-ticket', { y: 15, opacity: 0, stagger: 0.1, duration: 0.4, ease: "power2.out", delay: 0.4 });
 
-      // Number Counters
+      // Counter animation
       const counters = document.querySelectorAll('.gs-counter');
       counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-val'));
-        if(target === 0) return;
-        
+        const target = +counter.getAttribute('data-val');
         gsap.to(counter, {
           innerHTML: target,
-          duration: 1.5,
-          snap: { innerHTML: 1 }
+          duration: 2,
+          snap: { innerHTML: 1 },
+          ease: "power2.out"
         });
       });
+
+      // Load dynamic username
+      const storedName = localStorage.getItem('crm_username');
+      if (storedName) {
+        document.getElementById('userNameText').textContent = storedName;
+        document.getElementById('userAvatarText').textContent = storedName.charAt(0).toUpperCase();
+        document.getElementById('welcomeText').textContent = `Welcome back, ${storedName}!`;
+      }
     });
   </script>
 </body>

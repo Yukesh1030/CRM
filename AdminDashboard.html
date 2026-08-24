@@ -100,8 +100,8 @@
       </div>
       <div class="user-profile">
         <i class="fa-regular fa-bell" style="font-size: 1.2rem; cursor: pointer;"></i>
-        <div class="user-avatar">A</div>
-        <div style="font-weight: 500;">Admin</div>
+        <div class="user-avatar" id="userAvatarText">A</div>
+        <div style="font-weight: 500;" id="userNameText">Admin</div>
       </div>
     </header>
 
@@ -229,6 +229,13 @@
           }
         });
       });
+
+      // Load dynamic username
+      const storedName = localStorage.getItem('crm_username');
+      if (storedName) {
+        document.getElementById('userNameText').textContent = storedName;
+        document.getElementById('userAvatarText').textContent = storedName.charAt(0).toUpperCase();
+      }
     });
   </script>
 </body>
