@@ -36,6 +36,11 @@
   padding: 0;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 html {
   scroll-behavior: smooth;
   font-family: 'Poppins', sans-serif;
@@ -45,7 +50,6 @@ html {
 body {
   background-color: var(--bg-main);
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
 a {
@@ -381,6 +385,14 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
 @media (max-width: 576px) {
   .footer-grid {
     grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .social-links {
+    justify-content: center;
+  }
+  .footer-brand img {
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .section {
@@ -424,6 +436,11 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   font-size: 1.2rem;
   padding: 15px 0;
   border-bottom: 1px solid var(--border-color);
+  color: var(--text-dark);
+}
+
+.mobile-menu .nav-link:hover, .mobile-menu .nav-link.active {
+  color: var(--primary);
 }
 
 .mobile-menu .btn {
@@ -537,13 +554,14 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   max-width: 900px;
 }
 .hero-fullscreen h1 {
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-size: clamp(2rem, 6vw, 5.5rem);
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
   line-height: 1.1;
   margin-bottom: 20px;
   color: var(--secondary);
+  word-wrap: break-word;
 }
 .hero-fullscreen p {
   font-size: 1.2rem;

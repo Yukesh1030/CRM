@@ -230,7 +230,7 @@
     <div class="container" data-aos="fade-up">
       <h2>Need immediate answers?</h2>
       <p>Check out our knowledge base or community forum for quick solutions.</p>
-      <a href="Resources.html" class="btn btn-outline" style="margin-top: 20px;">Visit Help Center</a>
+      <a href="404.html" class="btn btn-outline" style="margin-top: 20px;">Visit Help Center</a>
     </div>
   </section>
 
@@ -239,7 +239,7 @@
     <div class="container" data-aos="zoom-in">
       <h2 style="color: var(--secondary);">Ready to get started?</h2>
       <p style="color: #94a3b8; max-width: 600px; margin: 0 auto 30px;">Join thousands of businesses growing with STACKLY CRM.</p>
-      <a href="Signup.html" class="btn btn-primary">Start Free Trial</a>
+      <a href="404.html" class="btn btn-primary">Start Free Trial</a>
     </div>
   </section>
 
@@ -376,13 +376,13 @@
       }
       
       if (isValid) {
-        // Show success message
+        // Show success message and redirect
         document.getElementById('successMessage').style.display = 'block';
         this.reset();
         
         setTimeout(() => {
-          document.getElementById('successMessage').style.display = 'none';
-        }, 5000);
+          window.location.href = '404.html';
+        }, 1500);
       }
     });
   </script>
