@@ -1,0 +1,216 @@
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  padding-top: 100px;
+  background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-offwhite) 100%);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 600px;
+  z-index: 2;
+}
+
+.hero h1 {
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+}
+
+.hero-visual {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-mockup {
+  border-radius: 12px;
+  box-shadow: var(--shadow-xl);
+  transform-origin: center right;
+}
+
+.floating-card {
+  position: absolute;
+  background: var(--secondary);
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 3;
+}
+
+.card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* Feature Cards (Section 1) */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.feature-card {
+  background: var(--secondary);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid var(--border-color);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+/* Pipeline Section (Section 2 & 4) */
+.pipeline-board {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px 0;
+  min-height: 400px;
+}
+
+.pipeline-stage {
+  flex: 0 0 280px;
+  background: var(--bg-offwhite);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.pipeline-header {
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pipeline-card {
+  background: var(--secondary);
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 12px;
+  cursor: pointer;
+  border-left: 4px solid var(--primary);
+}
+
+/* Analytics Section (Section 5) */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-card {
+  background: var(--secondary);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 10px 0;
+}
+
+/* Carousel Section (Section 8) */
+.carousel-container {
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 30px;
+}
+
+.case-study-card {
+  flex: 0 0 400px;
+  background: var(--secondary);
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+}
+
+.case-study-card h4 {
+  color: var(--accent);
+}
+
+/* CTA Section (Section 9) */
+.cta-section {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section h2 {
+  color: var(--secondary);
+}
+
+.cta-section .btn-outline {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+.cta-section .btn-outline:hover {
+  background: var(--secondary);
+  color: var(--bg-dark);
+}
+
+@media (max-width: 991px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 150px;
+  }
+  
+  .hero-content {
+    margin-bottom: 50px;
+  }
+  
+  .analytics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .case-study-card {
+    flex: 0 0 300px;
+  }
+}

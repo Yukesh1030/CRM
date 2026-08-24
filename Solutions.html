@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solutions - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    .subpage-hero {
+      padding: 160px 0 80px;
+      background: var(--bg-dark);
+      color: var(--secondary);
+      text-align: center;
+    }
+    .solution-card {
+      background: var(--secondary);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+    .solution-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--accent);
+    }
+    .solution-icon {
+      font-size: 3rem;
+      color: var(--primary-hover);
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+    }
+    @media (max-width: 576px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/Brand-logo.webp" alt="STACKLY Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Features.html" class="nav-link">Features</a></li>
+        <li><a href="Solutions.html" class="nav-link active">Solutions</a></li>
+        <li><a href="Resources.html" class="nav-link">Resources</a></li>
+        <li><a href="Contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="Login.html" class="btn btn-outline">Login</a>
+      </div>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Mobile Slide Menu -->
+  <div class="mobile-menu">
+    <button class="close-menu"><i class="fa-solid fa-xmark"></i></button>
+    <a href="index.html" class="nav-brand" style="margin-bottom: 30px;">
+      <img src="assets/Brand-logo.webp" alt="STACKLY Logo" style="height: 40px;">
+    </a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="Features.html" class="nav-link">Features</a>
+    <a href="Solutions.html" class="nav-link active">Solutions</a>
+    <a href="Resources.html" class="nav-link">Resources</a>
+    <a href="Contact.html" class="nav-link">Contact</a>
+    <a href="Login.html" class="btn btn-primary" style="text-align: center;">Login</a>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-fullscreen" style="background-image: url('assets/hero_bg_solutions.webp');">
+    <div class="container gs-reveal">
+      <h1 class="gs-title">CRM Solutions Built Around <br><span style="color: var(--primary);">Your Business</span></h1>
+      <p class="gs-desc">Whether you're a lean startup or a global enterprise, STACKLY adapts to how your team works.</p>
+      <div class="btn-group gs-btns">
+        <a href="Features.html" class="btn btn-primary" style="background-color: #7CFC00 !important; color: #0f172a !important;">View Features</a>
+        <a href="Contact.html" class="btn btn-outline">Talk to Sales</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" style="padding: 80px 0;">
+    <div class="grid-2">
+      <!-- Section 1: Sales Teams -->
+      <div class="solution-card" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa-solid fa-handshake solution-icon"></i>
+        <h3>For Sales Teams</h3>
+        <p>Accelerate your sales cycle. Manage pipelines, forecast revenue, and close deals faster with smart automation and real-time insights.</p>
+        <ul style="text-align: left; margin-top: 20px; color: var(--text-muted);">
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Deal tracking</li>
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Quotas & Forecasting</li>
+        </ul>
+      </div>
+      
+      <!-- Section 2: Marketing Teams -->
+      <div class="solution-card" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa-solid fa-bullhorn solution-icon"></i>
+        <h3>For Marketing Teams</h3>
+        <p>Align marketing and sales. Track campaign ROI, score leads automatically, and hand off qualified prospects seamlessly.</p>
+        <ul style="text-align: left; margin-top: 20px; color: var(--text-muted);">
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Campaign tracking</li>
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Lead generation</li>
+        </ul>
+      </div>
+
+      <!-- Section 3: Customer Support -->
+      <div class="solution-card" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa-solid fa-headset solution-icon"></i>
+        <h3>For Customer Support</h3>
+        <p>Deliver exceptional service. Access complete customer history while resolving tickets to provide personalized support.</p>
+        <ul style="text-align: left; margin-top: 20px; color: var(--text-muted);">
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Ticket management</li>
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Knowledge base</li>
+        </ul>
+      </div>
+
+      <!-- Section 4: Startups -->
+      <div class="solution-card" data-aos="fade-up" data-aos-delay="400">
+        <i class="fa-solid fa-rocket solution-icon"></i>
+        <h3>For Startups</h3>
+        <p>Hit the ground running. An affordable, easy-to-use CRM that scales with your rapid growth without complex setup.</p>
+        <ul style="text-align: left; margin-top: 20px; color: var(--text-muted);">
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Quick implementation</li>
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Scalable pricing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Small Businesses -->
+  <section class="section" style="background: var(--bg-offwhite);">
+    <div class="container text-center">
+      <div class="section-title" data-aos="fade-up">
+        <h2>For Small Businesses</h2>
+        <p>Ditch the spreadsheets. Centralize your customer data and automate repetitive admin tasks.</p>
+      </div>
+      <div class="feature-image" style="margin-top: 40px;" data-aos="zoom-in">
+        <img src="assets/crm-team.webp?v=2" alt="Small Business Team" style="max-width: 800px;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Enterprise -->
+  <section class="section">
+    <div class="container text-center">
+      <div class="section-title" data-aos="fade-up">
+        <h2>For Enterprise</h2>
+        <p>Advanced security, robust permissions, and custom workflows for complex organizations.</p>
+      </div>
+      <div class="d-flex justify-center gap-4" style="flex-wrap: wrap; margin-top: 40px;" data-aos="fade-up" data-aos-delay="100">
+        <div style="background: var(--bg-offwhite); padding: 20px; border-radius: 8px;"><i class="fa-solid fa-shield-halved" style="color: var(--accent); margin-bottom: 10px; font-size: 1.5rem;"></i><br><strong>SSO Integration</strong></div>
+        <div style="background: var(--bg-offwhite); padding: 20px; border-radius: 8px;"><i class="fa-solid fa-user-lock" style="color: var(--accent); margin-bottom: 10px; font-size: 1.5rem;"></i><br><strong>Role-Based Access</strong></div>
+        <div style="background: var(--bg-offwhite); padding: 20px; border-radius: 8px;"><i class="fa-solid fa-server" style="color: var(--accent); margin-bottom: 10px; font-size: 1.5rem;"></i><br><strong>Dedicated Support</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Industry Solutions -->
+  <section class="section" style="background: var(--bg-offwhite);">
+    <div class="container">
+      <div class="section-title text-center" data-aos="fade-up">
+        <h2>Industry-Specific Solutions</h2>
+      </div>
+      <div class="grid-2" style="margin-top: 40px;">
+        <div style="background: var(--secondary); padding: 30px; border-radius: 8px; box-shadow: var(--shadow-sm);" data-aos="fade-right">
+          <h4 style="color: var(--accent);">Real Estate</h4>
+          <p>Manage property listings, track buyer preferences, and automate follow-ups for open houses.</p>
+        </div>
+        <div style="background: var(--secondary); padding: 30px; border-radius: 8px; box-shadow: var(--shadow-sm);" data-aos="fade-left">
+          <h4 style="color: var(--accent);">Agencies</h4>
+          <p>Track client retainers, manage project handoffs, and keep all client communication in one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Final CTA -->
+  <section class="section" style="background: var(--bg-dark); color: var(--secondary); text-align: center;">
+    <div class="container" data-aos="zoom-in">
+      <h2 style="color: var(--secondary);">Find the Right Solution for Your Team</h2>
+      <a href="Signup.html" class="btn btn-primary" style="margin-top: 20px;">Start Your Free Trial</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/Brand-logo.webp" alt="STACKLY">
+          <p>The smart CRM platform helping businesses grow through better customer relationships and data-driven insights.</p>
+          <div class="social-links">
+            <a href="404.html" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="Features.html">Features</a>
+            <a href="Solutions.html">Solutions</a>
+            <a href="Resources.html">Resources</a>
+            <a href="Contact.html">Contact</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <div class="footer-links">
+            <a href="404.html">Privacy Policy</a>
+            <a href="404.html">Terms of Service</a>
+            <a href="404.html">Cookie Policy</a>
+            <a href="404.html">Security</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-links">
+            <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+            <a href="mailto:thestackly@gmail.com">thestackly@gmail.com</a>
+            <a href="https://wa.me/917010792745">Whatsapp : +91 70107 92745</a>
+            <a href="#" style="line-height: 1.4;">Bengaluru Branch Office<br>Evolve Studio, 4th Floor,<br>Khata No 10, Begur - Koppa Rd, in front of SNN Raj Serenity,<br>Suraksha Nagar, Yelenahalli, Begur,<br>Bengaluru, Karnataka - 560068</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 STACKLY CRM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const tl = gsap.timeline();
+      tl.from(".gs-title", {y: 50, opacity: 0, duration: 0.8, ease: "power3.out"})
+        .from(".gs-desc", {y: 30, opacity: 0, duration: 0.8, ease: "power3.out"}, "-=0.6")
+        .from(".gs-btns", {y: 20, opacity: 0, duration: 0.6, ease: "power3.out"}, "-=0.4");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    .subpage-hero {
+      padding: 160px 0 80px;
+      background: var(--bg-dark);
+      color: var(--secondary);
+      text-align: center;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 50px;
+      margin-top: -50px;
+      position: relative;
+      z-index: 10;
+    }
+    .contact-info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-card {
+      background: var(--secondary);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      border-left: 4px solid var(--accent);
+    }
+    .contact-form-container {
+      background: var(--secondary);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-dark);
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: inherit;
+      transition: var(--transition);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+    .error-msg {
+      color: #ef4444;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+    @media (max-width: 991px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/Brand-logo.webp" alt="STACKLY Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Features.html" class="nav-link">Features</a></li>
+        <li><a href="Solutions.html" class="nav-link">Solutions</a></li>
+        <li><a href="Resources.html" class="nav-link">Resources</a></li>
+        <li><a href="Contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="Login.html" class="btn btn-outline">Login</a>
+      </div>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="close-menu"><i class="fa-solid fa-xmark"></i></button>
+    <a href="index.html" class="nav-brand" style="margin-bottom: 30px;">
+      <img src="assets/Brand-logo.webp" alt="STACKLY Logo" style="height: 40px;">
+    </a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="Features.html" class="nav-link">Features</a>
+    <a href="Solutions.html" class="nav-link">Solutions</a>
+    <a href="Resources.html" class="nav-link">Resources</a>
+    <a href="Contact.html" class="nav-link active">Contact</a>
+    <a href="Login.html" class="btn btn-primary" style="text-align: center;">Login</a>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-fullscreen" style="background-image: url('assets/hero_bg_contact.webp');">
+    <div class="container gs-reveal">
+      <h1 class="gs-title">Let's Talk About <br><span style="color: var(--primary);">Your Business</span></h1>
+      <p class="gs-desc">We're here to help and answer any question you might have. We look forward to hearing from you.</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container contact-grid">
+      <!-- Info Cards (Sections 2-4) -->
+      <div class="contact-info-cards" data-aos="fade-right">
+        <div class="contact-card">
+          <i class="fa-solid fa-location-dot" style="color: var(--accent); font-size: 1.5rem; margin-bottom: 10px;"></i>
+          <h3>Bengaluru Branch Office</h3>
+          <p style="font-size: 0.9rem;">Evolve Studio, 4th Floor,<br>Khata No 10, Begur - Koppa Rd, in front of SNN Raj Serenity,<br>Suraksha Nagar, Yelenahalli, Begur,<br>Bengaluru, Karnataka - 560068</p>
+        </div>
+        <div class="contact-card">
+          <i class="fa-solid fa-envelope" style="color: var(--accent); font-size: 1.5rem; margin-bottom: 10px;"></i>
+          <h3>Email Us</h3>
+          <p style="font-size: 0.9rem;">Send us an email anytime.</p>
+          <strong>info@thestackly.com<br>thestackly@gmail.com</strong>
+        </div>
+        <div class="contact-card">
+          <i class="fa-brands fa-whatsapp" style="color: var(--accent); font-size: 1.5rem; margin-bottom: 10px;"></i>
+          <h3>WhatsApp</h3>
+          <p style="font-size: 0.9rem;">Chat with us directly.</p>
+          <strong>+91 70107 92745</strong>
+        </div>
+      </div>
+
+      <!-- Contact Form (Section 5) -->
+      <div class="contact-form-container" data-aos="fade-up">
+        <h2 style="margin-bottom: 30px;">Send us a message</h2>
+        <form id="contactForm" novalidate>
+          <div class="d-flex gap-2" style="flex-wrap: wrap;">
+            <div class="form-group" style="flex: 1; min-width: 200px;">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" placeholder="John Doe">
+              <div class="error-msg" id="nameError">Please enter your full name</div>
+            </div>
+            <div class="form-group" style="flex: 1; min-width: 200px;">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="john@company.com">
+              <div class="error-msg" id="emailError">Please enter a valid email</div>
+            </div>
+          </div>
+          
+          <div class="d-flex gap-2" style="flex-wrap: wrap;">
+            <div class="form-group" style="flex: 1; min-width: 200px;">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="(555) 123-4567">
+              <div class="error-msg" id="phoneError">Please enter a valid phone number</div>
+            </div>
+            <div class="form-group" style="flex: 1; min-width: 200px;">
+              <label for="company">Company</label>
+              <input type="text" id="company" placeholder="Acme Corp">
+              <div class="error-msg" id="companyError">Please enter your company name</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="How can we help you?">
+            <div class="error-msg" id="subjectError">Please enter a subject</div>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Tell us more about your project or needs..."></textarea>
+            <div class="error-msg" id="msgError">Please enter a message</div>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%; border: none;">Send Message <i class="fa-solid fa-paper-plane" style="margin-left: 8px;"></i></button>
+          
+          <div id="successMessage" style="display: none; padding: 15px; background: var(--primary-light); color: #15803d; border-radius: 8px; margin-top: 20px; text-align: center;">
+            <i class="fa-solid fa-circle-check" style="margin-right: 8px;"></i> Message sent successfully! We'll get back to you shortly.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Availability -->
+  <section class="section" style="background: var(--bg-offwhite); text-align: center;">
+    <div class="container" data-aos="fade-up">
+      <h2>Global Availability</h2>
+      <p style="margin-bottom: 40px;">Our remote teams are distributed across the globe to support you anywhere, anytime.</p>
+      
+      <div class="d-flex justify-center gap-4" style="flex-wrap: wrap;">
+        <div style="background: var(--secondary); padding: 30px; border-radius: 12px; width: 250px; box-shadow: var(--shadow-sm);">
+          <i class="fa-solid fa-earth-americas" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+          <h4>North America</h4>
+          <p style="font-size: 0.9rem;">9AM - 6PM EST</p>
+        </div>
+        <div style="background: var(--secondary); padding: 30px; border-radius: 12px; width: 250px; box-shadow: var(--shadow-sm);">
+          <i class="fa-solid fa-earth-europe" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+          <h4>Europe</h4>
+          <p style="font-size: 0.9rem;">9AM - 6PM CET</p>
+        </div>
+        <div style="background: var(--secondary); padding: 30px; border-radius: 12px; width: 250px; box-shadow: var(--shadow-sm);">
+          <i class="fa-solid fa-earth-asia" style="font-size: 2rem; color: var(--accent); margin-bottom: 15px;"></i>
+          <h4>Asia Pacific</h4>
+          <p style="font-size: 0.9rem;">9AM - 6PM AEST</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section class="section text-center">
+    <div class="container" data-aos="fade-up">
+      <h2>Need immediate answers?</h2>
+      <p>Check out our knowledge base or community forum for quick solutions.</p>
+      <a href="Resources.html" class="btn btn-outline" style="margin-top: 20px;">Visit Help Center</a>
+    </div>
+  </section>
+
+  <!-- Section 8: Final CTA -->
+  <section class="section" style="background: var(--bg-dark); color: var(--secondary); text-align: center;">
+    <div class="container" data-aos="zoom-in">
+      <h2 style="color: var(--secondary);">Ready to get started?</h2>
+      <p style="color: #94a3b8; max-width: 600px; margin: 0 auto 30px;">Join thousands of businesses growing with STACKLY CRM.</p>
+      <a href="Signup.html" class="btn btn-primary">Start Free Trial</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/Brand-logo.webp" alt="STACKLY">
+          <p>The smart CRM platform helping businesses grow through better customer relationships and data-driven insights.</p>
+          <div class="social-links">
+            <a href="404.html" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="Features.html">Features</a>
+            <a href="Solutions.html">Solutions</a>
+            <a href="Resources.html">Resources</a>
+            <a href="Contact.html">Contact</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <div class="footer-links">
+            <a href="404.html">Privacy Policy</a>
+            <a href="404.html">Terms of Service</a>
+            <a href="404.html">Cookie Policy</a>
+            <a href="404.html">Security</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-links">
+            <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+            <a href="mailto:thestackly@gmail.com">thestackly@gmail.com</a>
+            <a href="https://wa.me/917010792745">Whatsapp : +91 70107 92745</a>
+            <a href="#" style="line-height: 1.4;">Bengaluru Branch Office<br>Evolve Studio, 4th Floor,<br>Khata No 10, Begur - Koppa Rd, in front of SNN Raj Serenity,<br>Suraksha Nagar, Yelenahalli, Begur,<br>Bengaluru, Karnataka - 560068</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 STACKLY CRM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+
+    // Form Validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      let isValid = true;
+      
+      // Fields
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const company = document.getElementById('company').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      
+      // Validate Name
+      if (name === '') {
+        document.getElementById('nameError').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('nameError').style.display = 'none';
+      }
+      
+      // Validate Email (simple regex)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('emailError').style.display = 'none';
+      }
+      
+      // Validate Phone
+      if (phone === '' || phone.length < 8) {
+        document.getElementById('phoneError').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('phoneError').style.display = 'none';
+      }
+
+      // Validate Company
+      if (company === '') {
+        document.getElementById('companyError').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('companyError').style.display = 'none';
+      }
+      
+      // Validate Subject
+      if (subject === '') {
+        document.getElementById('subjectError').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('subjectError').style.display = 'none';
+      }
+
+      // Validate Message
+      if (msg === '') {
+        document.getElementById('msgError').style.display = 'block';
+        isValid = false;
+      } else {
+        document.getElementById('msgError').style.display = 'none';
+      }
+      
+      if (isValid) {
+        // Show success message
+        document.getElementById('successMessage').style.display = 'block';
+        this.reset();
+        
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+      }
+    });
+  </script>
+</body>
+</html>

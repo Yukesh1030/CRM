@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Portal - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--bg-offwhite); display: flex; height: 100vh; overflow: hidden; }
+    
+    /* Sidebar */
+    .sidebar { width: 260px; background: var(--secondary); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; transition: var(--transition); }
+    .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); }
+    .sidebar-header img { height: 30px; }
+    .sidebar-menu { flex: 1; padding: 20px 0; overflow-y: auto; }
+    .sidebar-link { display: flex; align-items: center; gap: 15px; padding: 12px 24px; color: var(--text-muted); transition: var(--transition); }
+    .sidebar-link:hover, .sidebar-link.active { background: var(--primary-light); color: var(--text-dark); border-left: 3px solid var(--primary); }
+    
+    /* Main Content */
+    .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    
+    /* Header */
+    .top-header { background: var(--secondary); padding: 15px 30px; display: flex; justify-content: flex-end; align-items: center; box-shadow: var(--shadow-sm); z-index: 10; border-bottom: 1px solid var(--border-color); }
+    .user-profile { display: flex; align-items: center; gap: 15px; }
+    .user-avatar { width: 40px; height: 40px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+    
+    /* Dashboard Area */
+    .dashboard-area { flex: 1; padding: 30px; overflow-y: auto; }
+    
+    /* Welcome Banner */
+    .welcome-banner { background: linear-gradient(135deg, var(--bg-dark), #1e293b); color: var(--secondary); border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: var(--shadow-md); position: relative; overflow: hidden; }
+    .welcome-banner h2 { margin-bottom: 10px; color: var(--secondary); }
+    .welcome-banner p { color: #cbd5e1; margin-bottom: 0; max-width: 600px; }
+    
+    /* Stats Grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-bottom: 30px; }
+    .stat-card { background: var(--secondary); padding: 24px; border-radius: 12px; box-shadow: var(--shadow-sm); text-align: center; border: 1px solid var(--border-color); }
+    .stat-value { font-size: 2.5rem; font-weight: 700; color: var(--text-dark); margin: 10px 0; }
+    
+    /* Projects / Tickets Section */
+    .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+    .panel { background: var(--secondary); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 24px; border: 1px solid var(--border-color); }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .panel-header h3 { margin: 0; }
+    
+    .ticket-list { display: flex; flex-direction: column; gap: 15px; }
+    .ticket-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; transition: var(--transition); }
+    .ticket-item:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+    .status-badge { padding: 4px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 500; }
+    .status-open { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+    .status-closed { background: rgba(21, 128, 61, 0.1); color: #15803d; }
+    
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; position: absolute; left: 20px; padding: 10px; margin-left: -10px; z-index: 20; }
+    
+    @media (max-width: 991px) {
+      .content-grid { grid-template-columns: 1fr; }
+      .sidebar { position: fixed; left: -260px; height: 100vh; z-index: 100; box-shadow: var(--shadow-xl); }
+      .sidebar.active { left: 0; }
+      .mobile-toggle { display: block; }
+      .top-header { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/Brand-logo.webp" alt="STACKLY">
+    </div>
+    <div class="sidebar-menu">
+      <a href="#" class="sidebar-link active"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="#" class="sidebar-link"><i class="fa-solid fa-folder-open"></i> My Projects</a>
+      <a href="#" class="sidebar-link"><i class="fa-solid fa-ticket"></i> Support Tickets</a>
+      <a href="#" class="sidebar-link"><i class="fa-solid fa-file-invoice-dollar"></i> Invoices</a>
+      <a href="#" class="sidebar-link"><i class="fa-solid fa-user"></i> Profile</a>
+    </div>
+    <div style="padding: 20px; border-top: 1px solid var(--border-color);">
+      <a href="Login.html" class="sidebar-link" style="padding: 0;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-header">
+      <button class="mobile-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+      <div class="user-profile">
+        <div class="user-avatar">C</div>
+        <div style="font-weight: 500;">Client User</div>
+      </div>
+    </header>
+
+    <div class="dashboard-area gs-dash">
+      
+      <div class="welcome-banner gs-item">
+        <h2>Welcome back, Client!</h2>
+        <p>Here's a summary of your active projects and support tickets. We're here if you need any assistance.</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card gs-item">
+          <div style="color: var(--text-muted);"><i class="fa-solid fa-folder-open" style="color: var(--primary-hover); margin-right: 5px;"></i> Active Projects</div>
+          <div class="stat-value gs-counter" data-val="2">0</div>
+        </div>
+        <div class="stat-card gs-item">
+          <div style="color: var(--text-muted);"><i class="fa-solid fa-ticket" style="color: #3b82f6; margin-right: 5px;"></i> Open Tickets</div>
+          <div class="stat-value gs-counter" data-val="1">0</div>
+        </div>
+        <div class="stat-card gs-item">
+          <div style="color: var(--text-muted);"><i class="fa-solid fa-file-invoice" style="color: var(--accent); margin-right: 5px;"></i> Unpaid Invoices</div>
+          <div class="stat-value gs-counter" data-val="0">0</div>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <!-- Recent Tickets -->
+        <div class="panel gs-item">
+          <div class="panel-header">
+            <h3>Recent Support Tickets</h3>
+            <button class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">New Ticket</button>
+          </div>
+          <div class="ticket-list" id="ticketList">
+            <!-- Dynamic Content -->
+          </div>
+        </div>
+
+        <!-- Account Manager -->
+        <div class="panel gs-item" style="text-align: center;">
+          <h3 style="margin-bottom: 20px;">Your Account Manager</h3>
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: #e2e8f0; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #94a3b8;">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <h4>Jane Doe</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">Senior Support Specialist</p>
+          <a href="mailto:jane@stackly.com" class="btn btn-outline" style="width: 100%;">Contact Jane</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar Toggle
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('active');
+        });
+      }
+
+      // Dynamic Tickets
+      const tickets = [
+        { id: '#T-1024', subject: 'Integration issue with Slack', status: 'Open', date: 'Today' },
+        { id: '#T-1023', subject: 'Billing cycle inquiry', status: 'Closed', date: 'Oct 12' },
+        { id: '#T-0985', subject: 'Need help setting up workflows', status: 'Closed', date: 'Sep 28' }
+      ];
+
+      const ticketList = document.getElementById('ticketList');
+      
+      tickets.forEach(ticket => {
+        const item = document.createElement('div');
+        item.className = 'ticket-item gs-ticket';
+        const statusClass = ticket.status === 'Open' ? 'status-open' : 'status-closed';
+        
+        item.innerHTML = `
+          <div>
+            <h4 style="margin: 0 0 5px;">${ticket.subject}</h4>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">${ticket.id} • ${ticket.date}</div>
+          </div>
+          <span class="status-badge ${statusClass}">${ticket.status}</span>
+        `;
+        ticketList.appendChild(item);
+      });
+
+      // GSAP Animations
+      gsap.from('.gs-item', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" });
+      gsap.from('.gs-ticket', { y: 15, opacity: 0, stagger: 0.1, duration: 0.4, ease: "power2.out", delay: 0.4 });
+
+      // Number Counters
+      const counters = document.querySelectorAll('.gs-counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-val'));
+        if(target === 0) return;
+        
+        gsap.to(counter, {
+          innerHTML: target,
+          duration: 1.5,
+          snap: { innerHTML: 1 }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

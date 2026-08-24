@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    .subpage-hero {
+      padding: 160px 0 80px;
+      background: var(--bg-dark);
+      color: var(--secondary);
+      text-align: center;
+    }
+    @media (max-width: 991px) {
+      .feature-row, .feature-row.reverse {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/Brand-logo.webp" alt="STACKLY Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Features.html" class="nav-link active">Features</a></li>
+        <li><a href="Solutions.html" class="nav-link">Solutions</a></li>
+        <li><a href="Resources.html" class="nav-link">Resources</a></li>
+        <li><a href="Contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="Login.html" class="btn btn-outline">Login</a>
+      </div>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Mobile Slide Menu -->
+  <div class="mobile-menu">
+    <button class="close-menu"><i class="fa-solid fa-xmark"></i></button>
+    <a href="index.html" class="nav-brand" style="margin-bottom: 30px;">
+      <img src="assets/Brand-logo.webp" alt="STACKLY Logo" style="height: 40px;">
+    </a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="Features.html" class="nav-link active">Features</a>
+    <a href="Solutions.html" class="nav-link">Solutions</a>
+    <a href="Resources.html" class="nav-link">Resources</a>
+    <a href="Contact.html" class="nav-link">Contact</a>
+    <a href="Login.html" class="btn btn-primary" style="text-align: center;">Login</a>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-fullscreen" style="background-image: url('assets/hero_bg_features.webp');">
+    <div class="container gs-reveal">
+      <h1 class="gs-title">Powerful Features. <br><span style="color: var(--primary);">One Connected CRM.</span></h1>
+      <p class="gs-desc">Everything your team needs to capture leads, close deals, and build lasting customer relationships.</p>
+      <div class="btn-group gs-btns">
+        <a href="Signup.html" class="btn btn-primary" style="background-color: #7CFC00 !important; color: #0f172a !important;">Start Free Trial</a>
+        <a href="Solutions.html" class="btn btn-outline">Explore Solutions</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 1: Lead Management -->
+  <section class="section" style="background: var(--bg-main);">
+    <div class="container feature-row">
+      <div class="feature-text" data-aos="fade-right">
+        <h2>Smart Lead Management</h2>
+        <p>Automatically capture leads from your website, social media, and emails. Score them based on engagement and assign them to the right sales reps instantly.</p>
+        <ul style="color: var(--text-muted); list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 10px;"><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Multi-channel lead capture</li>
+          <li style="margin-bottom: 10px;"><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Automated lead scoring</li>
+          <li><i class="fa-solid fa-check text-primary" style="color: var(--primary-hover); margin-right: 10px;"></i> Intelligent routing</li>
+        </ul>
+      </div>
+      <div class="feature-image" data-aos="fade-left">
+        <img src="assets/lead-management.webp" alt="Lead Management">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Customer Management -->
+  <section class="section" style="background: var(--bg-offwhite);">
+    <div class="container feature-row reverse">
+      <div class="feature-text" data-aos="fade-left">
+        <h2>360° Customer Profiles</h2>
+        <p>Get a complete history of every customer interaction. See emails, calls, meetings, and purchases in one unified timeline.</p>
+        <a href="Signup.html" class="btn btn-outline" style="margin-top: 15px;">See It In Action</a>
+      </div>
+      <div class="feature-image" data-aos="fade-right">
+        <img src="assets/customer-management.webp" alt="Customer Profiles">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Sales Pipeline -->
+  <section class="section">
+    <div class="container feature-row">
+      <div class="feature-text" data-aos="fade-right">
+        <h2>Visual Sales Pipeline</h2>
+        <p>Track exactly where every deal stands. Customize your pipeline stages to match your unique sales process and identify bottlenecks.</p>
+        <div class="d-flex gap-2" style="margin-top: 20px;">
+          <div style="background: var(--bg-offwhite); padding: 15px; border-radius: 8px;"><i class="fa-solid fa-arrows-up-down-left-right" style="color: var(--accent); margin-bottom: 10px; font-size: 1.5rem;"></i><br><strong>Drag & Drop</strong></div>
+          <div style="background: var(--bg-offwhite); padding: 15px; border-radius: 8px;"><i class="fa-solid fa-bell" style="color: var(--accent); margin-bottom: 10px; font-size: 1.5rem;"></i><br><strong>Smart Alerts</strong></div>
+        </div>
+      </div>
+      <div class="feature-image" data-aos="fade-left">
+        <img src="assets/sales-pipeline.webp?v=2" alt="Sales Pipeline">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Task Management -->
+  <section class="section" style="background: var(--bg-offwhite);">
+    <div class="container feature-row reverse">
+      <div class="feature-text" data-aos="fade-left">
+        <h2>Task Management & Reminders</h2>
+        <p>Never miss a follow-up. Create tasks linked directly to contacts or deals, and sync them with your calendar.</p>
+      </div>
+      <div class="feature-image" data-aos="fade-right">
+        <img src="assets/office_team.webp" alt="Task Management">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Communication -->
+  <section class="section">
+    <div class="container feature-row">
+      <div class="feature-text" data-aos="fade-right">
+        <h2>Omnichannel Communication</h2>
+        <p>Email, call, and chat with your prospects directly from the CRM. All conversations are logged automatically.</p>
+        <ul style="color: var(--text-muted); list-style: none; padding-left: 0;">
+          <li style="margin-bottom: 10px;"><i class="fa-solid fa-envelope" style="color: var(--primary-hover); margin-right: 10px;"></i> Email Sync (Gmail/Outlook)</li>
+          <li style="margin-bottom: 10px;"><i class="fa-solid fa-phone" style="color: var(--primary-hover); margin-right: 10px;"></i> Built-in VoIP Calling</li>
+        </ul>
+      </div>
+      <div class="feature-image" data-aos="fade-left">
+        <img src="assets/hero_dashboard.webp" alt="Communication">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Workflow Automation -->
+  <section class="section" style="background: var(--bg-offwhite);">
+    <div class="container feature-row reverse">
+      <div class="feature-text" data-aos="fade-left">
+        <h2>Workflow Automation</h2>
+        <p>Put routine tasks on autopilot. Trigger emails, task assignments, and data updates based on specific actions.</p>
+      </div>
+      <div class="feature-image" data-aos="fade-right">
+        <div style="background: var(--secondary); padding: 40px; border-radius: 12px; box-shadow: var(--shadow-lg); text-align: center;">
+          <i class="fa-solid fa-gears" style="font-size: 4rem; color: var(--accent); margin-bottom: 20px;"></i>
+          <h3>Visual Automation Builder</h3>
+          <p>No coding required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Analytics & Reports -->
+  <section class="section">
+    <div class="container feature-row">
+      <div class="feature-text" data-aos="fade-right">
+        <h2>Advanced Analytics & Reports</h2>
+        <p>Build custom dashboards to track the metrics that matter most to your business. Forecast revenue accurately.</p>
+        <a href="Signup.html" class="btn btn-primary" style="margin-top: 15px;">Start Free Trial</a>
+      </div>
+      <div class="feature-image" data-aos="fade-left">
+        <img src="assets/analytics.webp?v=2" alt="Analytics">
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Integrations & CTA -->
+  <section class="section" style="background: var(--bg-dark); color: var(--secondary); text-align: center;">
+    <div class="container" data-aos="zoom-in">
+      <h2 style="color: var(--secondary);">Integrates with Your Favorite Tools</h2>
+      <p style="color: #94a3b8; max-width: 600px; margin: 0 auto 40px;">Connect STACKLY with the apps you already use every day.</p>
+      
+      <div class="d-flex justify-center gap-4" style="margin-bottom: 50px; font-size: 2.5rem; flex-wrap: wrap;">
+        <i class="fa-brands fa-slack"></i>
+        <i class="fa-brands fa-google"></i>
+        <i class="fa-brands fa-microsoft"></i>
+        <i class="fa-brands fa-mailchimp"></i>
+        <i class="fa-brands fa-stripe"></i>
+      </div>
+      
+      <div style="background: rgba(255,255,255,0.05); padding: 50px; border-radius: 12px; margin-top: 30px;">
+        <h3 style="color: var(--secondary);">Ready to upgrade your workflow?</h3>
+        <a href="Signup.html" class="btn btn-primary" style="margin-top: 20px;">Get Started Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/Brand-logo.webp" alt="STACKLY">
+          <p>The smart CRM platform helping businesses grow through better customer relationships and data-driven insights.</p>
+          <div class="social-links">
+            <a href="404.html" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="Features.html">Features</a>
+            <a href="Solutions.html">Solutions</a>
+            <a href="Resources.html">Resources</a>
+            <a href="Contact.html">Contact</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <div class="footer-links">
+            <a href="404.html">Privacy Policy</a>
+            <a href="404.html">Terms of Service</a>
+            <a href="404.html">Cookie Policy</a>
+            <a href="404.html">Security</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-links">
+            <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+            <a href="mailto:thestackly@gmail.com">thestackly@gmail.com</a>
+            <a href="https://wa.me/917010792745">Whatsapp : +91 70107 92745</a>
+            <a href="#" style="line-height: 1.4;">Bengaluru Branch Office<br>Evolve Studio, 4th Floor,<br>Khata No 10, Begur - Koppa Rd, in front of SNN Raj Serenity,<br>Suraksha Nagar, Yelenahalli, Begur,<br>Bengaluru, Karnataka - 560068</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 STACKLY CRM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 800, once: true, offset: 100 });
+
+    // Initialize GSAP
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero Animations
+      const tl = gsap.timeline();
+      tl.from(".gs-title", {y: 50, opacity: 0, duration: 0.8, ease: "power3.out"})
+        .from(".gs-desc", {y: 30, opacity: 0, duration: 0.8, ease: "power3.out"}, "-=0.6")
+        .from(".gs-btns", {y: 20, opacity: 0, duration: 0.6, ease: "power3.out"}, "-=0.4");
+
+      // Custom GSAP for Feature Rows (overriding AOS visual pop if desired)
+      const featureRows = document.querySelectorAll('.feature-row');
+      featureRows.forEach((row) => {
+        // We will animate the inner image subtly on scroll
+        const img = row.querySelector('.feature-image img');
+        if (img) {
+          gsap.fromTo(img, 
+            { scale: 0.95, opacity: 0.8 },
+            {
+              scale: 1,
+              opacity: 1,
+              duration: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: row,
+                start: "top 75%",
+                end: "bottom 25%",
+                toggleActions: "play none none reverse"
+              }
+            }
+          );
+        }
+      });
+    });
+  </script>
+</body>
+</html>

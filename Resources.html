@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=2">
+  <style>
+    .subpage-hero {
+      padding: 160px 0 80px;
+      background: var(--bg-dark);
+      color: var(--secondary);
+      text-align: center;
+    }
+    .resource-filter {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+      background: var(--secondary);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .search-bar {
+      max-width: 500px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 50px;
+      border: 1px solid var(--border-color);
+      font-family: inherit;
+    }
+    .search-bar button {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      bottom: 5px;
+      border: none;
+      background: var(--accent);
+      color: var(--secondary);
+      border-radius: 50px;
+      padding: 0 20px;
+      cursor: pointer;
+    }
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .resource-card {
+      background: var(--secondary);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+    .resource-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    .resource-tag {
+      font-size: 0.8rem;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 10px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    /* FAQ Accordion */
+    .accordion {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .accordion-item {
+      background: var(--secondary);
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .accordion-header {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    .accordion-content {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .accordion-content p {
+      padding-bottom: 20px;
+      margin: 0;
+    }
+    .accordion-item.active .accordion-content {
+      max-height: 200px;
+    }
+    .accordion-item.active .accordion-header i {
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-brand">
+        <img src="assets/Brand-logo.webp" alt="STACKLY Logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="Features.html" class="nav-link">Features</a></li>
+        <li><a href="Solutions.html" class="nav-link">Solutions</a></li>
+        <li><a href="Resources.html" class="nav-link active">Resources</a></li>
+        <li><a href="Contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="Login.html" class="btn btn-outline">Login</a>
+      </div>
+      <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Mobile Slide Menu -->
+  <div class="mobile-menu">
+    <button class="close-menu"><i class="fa-solid fa-xmark"></i></button>
+    <a href="index.html" class="nav-brand" style="margin-bottom: 30px;">
+      <img src="assets/Brand-logo.webp" alt="STACKLY Logo" style="height: 40px;">
+    </a>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="Features.html" class="nav-link">Features</a>
+    <a href="Solutions.html" class="nav-link">Solutions</a>
+    <a href="Resources.html" class="nav-link active">Resources</a>
+    <a href="Contact.html" class="nav-link">Contact</a>
+    <a href="Login.html" class="btn btn-primary" style="text-align: center;">Login</a>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-fullscreen" style="background-image: url('assets/hero_bg_resources.webp');">
+    <div class="container gs-reveal">
+      <h1 class="gs-title">Learn. Grow. <br><span style="color: var(--primary);">Succeed.</span></h1>
+      <p class="gs-desc">Everything you need to master STACKLY and scale your business.</p>
+      <div class="btn-group gs-btns">
+        <a href="#resources" class="btn btn-primary" style="background-color: #7CFC00 !important; color: #0f172a !important;">Browse Resources</a>
+        <a href="#faq" class="btn btn-outline">Read FAQs</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section 1 & 2: Search & Filter (Interactive) -->
+  <section class="section" style="padding-top: 40px; padding-bottom: 0;">
+    <div class="container">
+      <div class="search-bar" data-aos="fade-up">
+        <input type="text" placeholder="Search resources, guides, or tutorials..." id="searchInput">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      
+      <div class="resource-filter" data-aos="fade-up" data-aos-delay="100">
+        <button class="filter-btn active" data-filter="all">All Resources</button>
+        <button class="filter-btn" data-filter="guides">Guides</button>
+        <button class="filter-btn" data-filter="blog">Blog</button>
+        <button class="filter-btn" data-filter="case-studies">Case Studies</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sections 3-6: Resource Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="resource-grid" id="resourceGrid">
+        <!-- Resource 1 (Guide) -->
+        <div class="resource-card" data-category="guides" data-aos="fade-up">
+          <span class="resource-tag">Guide</span>
+          <h3>The Ultimate CRM Implementation Guide</h3>
+          <p>Learn step-by-step how to roll out a new CRM across your organization successfully.</p>
+          <a href="404.html" style="color: var(--accent); font-weight: 500; margin-top: 15px; display: inline-block;">Read Guide &rarr;</a>
+        </div>
+        <!-- Resource 2 (Blog) -->
+        <div class="resource-card" data-category="blog" data-aos="fade-up" data-aos-delay="100">
+          <span class="resource-tag">Blog</span>
+          <h3>5 Sales Email Templates That Convert</h3>
+          <p>Stop guessing. Use these proven email templates to increase your response rates.</p>
+          <a href="404.html" style="color: var(--accent); font-weight: 500; margin-top: 15px; display: inline-block;">Read Article &rarr;</a>
+        </div>
+        <!-- Resource 3 (Case Study) -->
+        <div class="resource-card" data-category="case-studies" data-aos="fade-up" data-aos-delay="200">
+          <span class="resource-tag">Case Study</span>
+          <h3>How TechFlow Scaled Sales by 300%</h3>
+          <p>Discover the exact workflow automations TechFlow used to triple their revenue.</p>
+          <a href="404.html" style="color: var(--accent); font-weight: 500; margin-top: 15px; display: inline-block;">View Case Study &rarr;</a>
+        </div>
+        <!-- Resource 4 (Documentation) -->
+        <div class="resource-card" data-category="guides" data-aos="fade-up">
+          <span class="resource-tag">Documentation</span>
+          <h3>API Reference Docs</h3>
+          <p>Everything your developers need to integrate STACKLY with your existing tech stack.</p>
+          <a href="404.html" style="color: var(--accent); font-weight: 500; margin-top: 15px; display: inline-block;">View Docs &rarr;</a>
+        </div>
+        <!-- Resource 5 (Tutorial) -->
+        <div class="resource-card" data-category="blog" data-aos="fade-up" data-aos-delay="100">
+          <span class="resource-tag">Tutorial</span>
+          <h3>Setting Up Your First Sales Pipeline</h3>
+          <p>A quick 5-minute video tutorial on configuring your pipeline stages.</p>
+          <a href="404.html" style="color: var(--accent); font-weight: 500; margin-top: 15px; display: inline-block;">Watch Video &rarr;</a>
+        </div>
+        <!-- Resource 6 (Sales Resources) -->
+        <div class="resource-card" data-category="guides" data-aos="fade-up" data-aos-delay="200">
+          <span class="resource-tag">Sales Resource</span>
+          <h3>2026 State of Sales Report</h3>
+          <p>Download our comprehensive report on the latest trends in B2B selling.</p>
+          <a href="404.html" style="color: var(--accent); font-weight: 500; margin-top: 15px; display: inline-block;">Download PDF &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section class="section" style="background: var(--bg-offwhite);">
+    <div class="container">
+      <div class="section-title text-center" data-aos="fade-up">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find quick answers to common questions about our platform.</p>
+      </div>
+      
+      <div class="accordion" data-aos="fade-up" data-aos-delay="100">
+        <div class="accordion-item">
+          <div class="accordion-header">
+            What is STACKLY CRM?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>STACKLY CRM is a comprehensive customer relationship management platform designed to help businesses manage leads, track sales pipelines, and automate communication all in one place.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            Do I need a credit card for the free trial?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>No, you do not need a credit card to start your 14-day free trial. You can explore all features risk-free.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-header">
+            Can I import data from my old CRM?
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="accordion-content">
+            <p>Yes, we offer a simple CSV import tool and direct integrations with popular CRMs to make migration seamless.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Newsletter -->
+  <section class="section" style="background: var(--bg-dark); color: var(--secondary); text-align: center;">
+    <div class="container" data-aos="zoom-in">
+      <h2 style="color: var(--secondary);">Subscribe to Our Newsletter</h2>
+      <p style="color: #94a3b8; max-width: 600px; margin: 0 auto 30px;">Get the latest sales strategies, CRM tips, and product updates delivered to your inbox weekly.</p>
+      
+      <div style="max-width: 500px; margin: 0 auto; position: relative;">
+        <input type="email" placeholder="Enter your email address" style="width: 100%; padding: 15px 20px; border-radius: 50px; border: none; font-family: inherit;">
+        <button class="btn btn-primary" style="position: absolute; right: 5px; top: 5px; bottom: 5px;">Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="assets/Brand-logo.webp" alt="STACKLY">
+          <p>The smart CRM platform helping businesses grow through better customer relationships and data-driven insights.</p>
+          <div class="social-links">
+            <a href="404.html" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="Features.html">Features</a>
+            <a href="Solutions.html">Solutions</a>
+            <a href="Resources.html">Resources</a>
+            <a href="Contact.html">Contact</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Legal</h4>
+          <div class="footer-links">
+            <a href="404.html">Privacy Policy</a>
+            <a href="404.html">Terms of Service</a>
+            <a href="404.html">Cookie Policy</a>
+            <a href="404.html">Security</a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-links">
+            <a href="mailto:info@thestackly.com">info@thestackly.com</a>
+            <a href="mailto:thestackly@gmail.com">thestackly@gmail.com</a>
+            <a href="https://wa.me/917010792745">Whatsapp : +91 70107 92745</a>
+            <a href="#" style="line-height: 1.4;">Bengaluru Branch Office<br>Evolve Studio, 4th Floor,<br>Khata No 10, Begur - Koppa Rd, in front of SNN Raj Serenity,<br>Suraksha Nagar, Yelenahalli, Begur,<br>Bengaluru, Karnataka - 560068</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 STACKLY CRM. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true, offset: 100 });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+      const tl = gsap.timeline();
+      tl.from(".gs-title", {y: 50, opacity: 0, duration: 0.8, ease: "power3.out"})
+        .from(".gs-desc", {y: 30, opacity: 0, duration: 0.8, ease: "power3.out"}, "-=0.6")
+        .from(".gs-btns", {y: 20, opacity: 0, duration: 0.6, ease: "power3.out"}, "-=0.4");
+    });
+
+    // Interactive Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const resourceCards = document.querySelectorAll('.resource-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        resourceCards.forEach(card => {
+          if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Interactive FAQ Accordion
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+      const header = item.querySelector('.accordion-header');
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        accordionItems.forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

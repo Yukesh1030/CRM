@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: var(--bg-offwhite);
+      text-align: center;
+    }
+    .error-container {
+      background: var(--secondary);
+      padding: 60px;
+      border-radius: 12px;
+      box-shadow: var(--shadow-xl);
+      max-width: 600px;
+      width: 90%;
+    }
+    .error-code {
+      font-size: 8rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-shadow: 4px 4px 0 var(--primary);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .error-container h2 {
+      color: var(--text-dark);
+      margin-bottom: 15px;
+    }
+    .error-container p {
+      margin-bottom: 30px;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    @media (max-width: 576px) {
+      .btn-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-container">
+    <div class="error-code">404</div>
+    <h2>Oops! Page Not Found</h2>
+    <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+    
+    <div class="btn-group">
+      <button onclick="history.back()" class="btn btn-outline"><i class="fa-solid fa-arrow-left" style="margin-right: 8px;"></i> Go Back</button>
+      <a href="index.html" class="btn btn-primary"><i class="fa-solid fa-house" style="margin-right: 8px;"></i> Back to Home</a>
+    </div>
+  </div>
+
+</body>
+</html>
