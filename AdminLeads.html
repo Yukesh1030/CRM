@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leads & Contacts - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--bg-offwhite); display: flex; height: 100vh; overflow: hidden; }
+    
+    /* Sidebar */
+    .sidebar { width: 260px; background: var(--bg-dark); color: var(--secondary); display: flex; flex-direction: column; transition: var(--transition); flex-shrink: 0; }
+    .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .sidebar-header img { height: 30px; filter: brightness(0) invert(1); }
+    .sidebar-menu { flex: 1; padding: 20px 0; overflow-y: auto; }
+    .sidebar-link { display: flex; align-items: center; gap: 15px; padding: 12px 24px; color: #94a3b8; transition: var(--transition); }
+    .sidebar-link:hover, .sidebar-link.active { background: rgba(255,255,255,0.05); color: var(--accent); border-left: 3px solid var(--accent); }
+    
+    /* Main Content */
+    .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    
+    /* Header */
+    .top-header { background: var(--secondary); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); z-index: 10; }
+    .search-box { position: relative; width: 300px; }
+    .search-box input { width: 100%; padding: 10px 15px 10px 40px; border-radius: 50px; border: 1px solid var(--border-color); font-family: inherit; }
+    .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+    .user-profile { display: flex; align-items: center; gap: 15px; }
+    .user-avatar { width: 40px; height: 40px; background: var(--primary); color: var(--text-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+    
+    /* Dashboard Area */
+    .dashboard-area { flex: 1; padding: 30px; overflow-y: auto; }
+    
+    /* Stats Grid (Section 1) */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 30px; }
+    .stat-card { background: var(--secondary); padding: 24px; border-radius: 12px; box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 20px; }
+    .stat-icon { width: 50px; height: 50px; border-radius: 12px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .stat-info h3 { font-size: 1.8rem; margin: 0; color: var(--text-dark); }
+    .stat-info p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+    
+    .panel { background: var(--secondary); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 24px; margin-bottom: 30px; }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+    .panel-header h3 { margin: 0; }
+    
+    /* Filters (Section 2) */
+    .filters-bar { display: flex; gap: 15px; flex-wrap: wrap; }
+    .filters-bar select, .filters-bar input { padding: 8px 15px; border-radius: 6px; border: 1px solid var(--border-color); font-family: inherit; }
+    
+    /* Table (Section 3) */
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 800px; }
+    th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
+    th { font-weight: 600; color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    tr:last-child td { border-bottom: none; }
+    .badge { padding: 4px 10px; border-radius: 50px; font-size: 0.8rem; font-weight: 500; }
+    .badge.new { background: #dbeafe; color: #3b82f6; }
+    .badge.hot { background: #fef08a; color: #eab308; }
+    .badge.won { background: #dcfce7; color: #22c55e; }
+    .badge.lost { background: #fee2e2; color: #ef4444; }
+    .action-btns button { background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.1rem; transition: 0.2s; margin-right: 10px; }
+    .action-btns button:hover { color: var(--accent); }
+    
+    /* Grid for bottom sections */
+    .bottom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+    /* Sources Breakdown (Section 4) */
+    .source-bar-wrapper { display: flex; flex-direction: column; gap: 15px; }
+    .source-bar-row { display: flex; align-items: center; gap: 15px; }
+    .source-label { width: 100px; font-size: 0.9rem; font-weight: 500; }
+    .source-track { flex: 1; height: 10px; background: var(--bg-offwhite); border-radius: 50px; overflow: hidden; }
+    .source-fill { height: 100%; border-radius: 50px; }
+    .source-val { width: 40px; text-align: right; font-size: 0.9rem; font-weight: 600; }
+
+    /* Timeline (Section 5) */
+    .timeline { position: relative; padding-left: 20px; display: flex; flex-direction: column; gap: 20px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 5px; bottom: 0; width: 2px; background: var(--border-color); }
+    .timeline-item { position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -24px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--secondary); }
+    .timeline-item p { margin: 0 0 5px; font-size: 0.95rem; }
+    .timeline-time { font-size: 0.8rem; color: var(--text-muted); }
+
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    
+    @media (max-width: 991px) {
+      .bottom-grid { grid-template-columns: 1fr; }
+      .sidebar { position: fixed; left: -260px; height: 100vh; z-index: 100; box-shadow: var(--shadow-xl); }
+      .sidebar.active { left: 0; }
+      .mobile-toggle { display: block; padding: 8px; margin-left: -8px; }
+    }
+    @media (max-width: 576px) {
+      .search-box { display: none; }
+      .panel-header { flex-direction: column; align-items: flex-start; }
+      .filters-bar { width: 100%; }
+      .filters-bar select, .filters-bar input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/Brand-logo.webp" alt="STACKLY">
+    </div>
+    <div class="sidebar-menu">
+      <a href="AdminDashboard.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+      <a href="AdminLeads.html" class="sidebar-link active"><i class="fa-solid fa-users"></i> Leads & Contacts</a>
+      <a href="AdminCommunications.html" class="sidebar-link"><i class="fa-solid fa-envelope"></i> Communications</a>
+      <a href="AdminPipeline.html" class="sidebar-link"><i class="fa-solid fa-chart-line"></i> Sales Pipeline</a>
+      <a href="AdminMarketing.html" class="sidebar-link"><i class="fa-solid fa-bullhorn"></i> Marketing</a>
+      <a href="AdminSettings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Settings</a>
+    </div>
+    <div style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <a href="Login.html" class="sidebar-link" style="padding: 0;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-header">
+      <div class="d-flex align-center gap-3">
+        <button class="mobile-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search leads, tasks...">
+        </div>
+      </div>
+      <div class="user-profile">
+        <i class="fa-regular fa-bell" style="font-size: 1.2rem; cursor: pointer;"></i>
+        <div class="user-avatar" id="userAvatarText">A</div>
+        <div style="font-weight: 500;" id="userNameText">Admin</div>
+      </div>
+    </header>
+
+    <div class="dashboard-area gs-dash">
+      
+      <!-- Section 1: Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card gs-item">
+          <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+          <div class="stat-info">
+            <p>Total Leads</p>
+            <h3 class="gs-counter" data-val="2845">0</h3>
+          </div>
+        </div>
+        <div class="stat-card gs-item">
+          <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;"><i class="fa-solid fa-user-plus"></i></div>
+          <div class="stat-info">
+            <p>New This Week</p>
+            <h3 class="gs-counter" data-val="124">0</h3>
+          </div>
+        </div>
+        <div class="stat-card gs-item">
+          <div class="stat-icon" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;"><i class="fa-solid fa-percent"></i></div>
+          <div class="stat-info">
+            <p>Conversion Rate</p>
+            <h3 class="gs-counter" data-val="18">0</h3>
+          </div>
+        </div>
+        <div class="stat-card gs-item">
+          <div class="stat-icon" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;"><i class="fa-solid fa-user-minus"></i></div>
+          <div class="stat-info">
+            <p>Lost Leads</p>
+            <h3 class="gs-counter" data-val="42">0</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2 & 3: Filters & Table -->
+      <div class="panel gs-item">
+        <div class="panel-header">
+          <h3>Lead Management</h3>
+          <div class="filters-bar">
+            <input type="text" placeholder="Search name or email...">
+            <select>
+              <option value="">All Statuses</option>
+              <option value="new">New</option>
+              <option value="hot">Hot</option>
+              <option value="won">Won</option>
+            </select>
+            <button class="btn btn-primary" style="padding: 8px 15px; font-size: 0.9rem;"><i class="fa-solid fa-plus"></i> Add Lead</button>
+          </div>
+        </div>
+        
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Source</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 500;">John Doe</td>
+                <td>Acme Corp</td>
+                <td style="color: var(--text-muted);">john@acme.com</td>
+                <td><span class="badge new">New Lead</span></td>
+                <td>Website Form</td>
+                <td class="action-btns">
+                  <button><i class="fa-regular fa-envelope"></i></button>
+                  <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: 500;">Sarah Smith</td>
+                <td>DesignCo</td>
+                <td style="color: var(--text-muted);">sarah@designco.com</td>
+                <td><span class="badge hot">Hot Lead</span></td>
+                <td>Referral</td>
+                <td class="action-btns">
+                  <button><i class="fa-regular fa-envelope"></i></button>
+                  <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: 500;">Michael Chen</td>
+                <td>TechStart</td>
+                <td style="color: var(--text-muted);">michael@techstart.io</td>
+                <td><span class="badge won">Closed Won</span></td>
+                <td>Organic Search</td>
+                <td class="action-btns">
+                  <button><i class="fa-regular fa-envelope"></i></button>
+                  <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: 500;">Emily Davis</td>
+                <td>CloudSync</td>
+                <td style="color: var(--text-muted);">emily@cloudsync.net</td>
+                <td><span class="badge lost">Lost</span></td>
+                <td>Social Media</td>
+                <td class="action-btns">
+                  <button><i class="fa-regular fa-envelope"></i></button>
+                  <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bottom-grid">
+        <!-- Section 4: Sources Breakdown -->
+        <div class="panel gs-item">
+          <div class="panel-header">
+            <h3>Lead Sources</h3>
+          </div>
+          <div class="source-bar-wrapper">
+            <div class="source-bar-row">
+              <div class="source-label">Organic</div>
+              <div class="source-track"><div class="source-fill" style="width: 45%; background: var(--accent);"></div></div>
+              <div class="source-val">45%</div>
+            </div>
+            <div class="source-bar-row">
+              <div class="source-label">Direct</div>
+              <div class="source-track"><div class="source-fill" style="width: 25%; background: #3b82f6;"></div></div>
+              <div class="source-val">25%</div>
+            </div>
+            <div class="source-bar-row">
+              <div class="source-label">Social</div>
+              <div class="source-track"><div class="source-fill" style="width: 20%; background: var(--primary);"></div></div>
+              <div class="source-val">20%</div>
+            </div>
+            <div class="source-bar-row">
+              <div class="source-label">Referral</div>
+              <div class="source-track"><div class="source-fill" style="width: 10%; background: #eab308;"></div></div>
+              <div class="source-val">10%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: Activity Timeline -->
+        <div class="panel gs-item">
+          <div class="panel-header">
+            <h3>Recent Activity</h3>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <p><strong>Sarah Smith</strong> opened your email proposal.</p>
+              <div class="timeline-time">10 minutes ago</div>
+            </div>
+            <div class="timeline-item">
+              <p>New lead registered from <strong>Website Form</strong>.</p>
+              <div class="timeline-time">1 hour ago</div>
+            </div>
+            <div class="timeline-item">
+              <p>Call scheduled with <strong>Acme Corp</strong>.</p>
+              <div class="timeline-time">3 hours ago</div>
+            </div>
+            <div class="timeline-item">
+              <p>Deal closed won: <strong>TechStart License</strong>.</p>
+              <div class="timeline-time">Yesterday</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar Toggle
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('active');
+        });
+      }
+
+      // GSAP Animations
+      gsap.from('.gs-item', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" });
+
+      // Number Counters
+      const counters = document.querySelectorAll('.gs-counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-val'));
+        gsap.to(counter, {
+          innerHTML: target,
+          duration: 1.5,
+          snap: { innerHTML: 1 },
+          onUpdate: function() {
+            let val = Math.round(this.targets()[0].innerHTML);
+            if (target === 18) { counter.innerHTML = val + '%'; }
+            else { counter.innerHTML = val; }
+          }
+        });
+      });
+
+      // Load dynamic username
+      const storedName = localStorage.getItem('crm_username');
+      if (storedName) {
+        document.getElementById('userNameText').textContent = storedName;
+        document.getElementById('userAvatarText').textContent = storedName.charAt(0).toUpperCase();
+      }
+    });
+  </script>
+</body>
+</html>

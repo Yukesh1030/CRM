@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketing - STACKLY CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background: var(--bg-offwhite); display: flex; height: 100vh; overflow: hidden; }
+    
+    /* Sidebar */
+    .sidebar { width: 260px; background: var(--bg-dark); color: var(--secondary); display: flex; flex-direction: column; transition: var(--transition); flex-shrink: 0; }
+    .sidebar-header { padding: 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .sidebar-header img { height: 30px; filter: brightness(0) invert(1); }
+    .sidebar-menu { flex: 1; padding: 20px 0; overflow-y: auto; }
+    .sidebar-link { display: flex; align-items: center; gap: 15px; padding: 12px 24px; color: #94a3b8; transition: var(--transition); }
+    .sidebar-link:hover, .sidebar-link.active { background: rgba(255,255,255,0.05); color: var(--accent); border-left: 3px solid var(--accent); }
+    
+    /* Main Content */
+    .main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    
+    /* Header */
+    .top-header { background: var(--secondary); padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); z-index: 10; }
+    .search-box { position: relative; width: 300px; }
+    .search-box input { width: 100%; padding: 10px 15px 10px 40px; border-radius: 50px; border: 1px solid var(--border-color); font-family: inherit; }
+    .search-box i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+    .user-profile { display: flex; align-items: center; gap: 15px; }
+    .user-avatar { width: 40px; height: 40px; background: var(--primary); color: var(--text-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; }
+    
+    /* Dashboard Area */
+    .dashboard-area { flex: 1; padding: 30px; overflow-y: auto; }
+    
+    /* Stats Grid (Section 1) */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 30px; }
+    .stat-card { background: var(--secondary); padding: 24px; border-radius: 12px; box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 20px; }
+    .stat-icon { width: 50px; height: 50px; border-radius: 12px; background: var(--accent-light); color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+    .stat-info h3 { font-size: 1.8rem; margin: 0; color: var(--text-dark); }
+    .stat-info p { margin: 0; color: var(--text-muted); font-size: 0.9rem; }
+    
+    .panel { background: var(--secondary); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 24px; margin-bottom: 30px; }
+    .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .panel-header h3 { margin: 0; }
+
+    /* Layout Grids */
+    .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    /* Section 2: Campaigns Table */
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+    th, td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+    th { font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    tr:last-child td { border-bottom: none; }
+    .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; }
+    .status-active { background: #22c55e; }
+    .status-paused { background: #eab308; }
+    .progress-bar-bg { width: 100%; height: 6px; background: var(--border-color); border-radius: 50px; margin-top: 5px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; border-radius: 50px; background: var(--primary); }
+
+    /* Section 3: Social Media */
+    .social-card { display: flex; align-items: center; gap: 15px; padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; }
+    .social-icon { width: 45px; height: 45px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: white; }
+    .social-info h4 { margin: 0; font-size: 0.9rem; color: var(--text-muted); }
+    .social-info h2 { margin: 0; font-size: 1.4rem; }
+    .trend { font-size: 0.8rem; display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+    .trend.up { color: #22c55e; }
+    .trend.down { color: #ef4444; }
+
+    /* Section 4: Demographics */
+    .demo-bars { display: flex; flex-direction: column; gap: 15px; }
+    .demo-bar-row { display: flex; align-items: center; gap: 10px; }
+    .demo-label { width: 60px; font-size: 0.85rem; color: var(--text-muted); }
+    .demo-track { flex: 1; height: 8px; background: var(--bg-offwhite); border-radius: 50px; }
+    .demo-fill { height: 100%; background: var(--accent); border-radius: 50px; }
+    .demo-val { width: 40px; text-align: right; font-size: 0.85rem; font-weight: 500; }
+
+    /* Section 5: Quick Actions */
+    .action-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
+    .action-btn { display: flex; align-items: center; gap: 15px; padding: 15px; background: rgba(0,0,0,0.02); border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; transition: 0.2s; text-align: left; }
+    .action-btn:hover { background: var(--secondary); border-color: var(--primary); box-shadow: var(--shadow-sm); transform: translateX(5px); }
+    .action-btn i { font-size: 1.2rem; color: var(--primary); }
+    .action-btn div { font-weight: 500; font-size: 0.95rem; }
+
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+    
+    @media (max-width: 1200px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 991px) {
+      .three-col { grid-template-columns: 1fr; }
+      .sidebar { position: fixed; left: -260px; height: 100vh; z-index: 100; box-shadow: var(--shadow-xl); }
+      .sidebar.active { left: 0; }
+      .mobile-toggle { display: block; padding: 8px; margin-left: -8px; }
+    }
+    @media (max-width: 576px) {
+      .search-box { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/Brand-logo.webp" alt="STACKLY">
+    </div>
+    <div class="sidebar-menu">
+      <a href="AdminDashboard.html" class="sidebar-link"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+      <a href="AdminLeads.html" class="sidebar-link"><i class="fa-solid fa-users"></i> Leads & Contacts</a>
+      <a href="AdminCommunications.html" class="sidebar-link"><i class="fa-solid fa-envelope"></i> Communications</a>
+      <a href="AdminPipeline.html" class="sidebar-link"><i class="fa-solid fa-chart-line"></i> Sales Pipeline</a>
+      <a href="AdminMarketing.html" class="sidebar-link active"><i class="fa-solid fa-bullhorn"></i> Marketing</a>
+      <a href="AdminSettings.html" class="sidebar-link"><i class="fa-solid fa-gear"></i> Settings</a>
+    </div>
+    <div style="padding: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+      <a href="Login.html" class="sidebar-link" style="padding: 0;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="top-header">
+      <div class="d-flex align-center gap-3">
+        <button class="mobile-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search campaigns...">
+        </div>
+      </div>
+      <div class="user-profile">
+        <i class="fa-regular fa-bell" style="font-size: 1.2rem; cursor: pointer;"></i>
+        <div class="user-avatar" id="userAvatarText">A</div>
+        <div style="font-weight: 500;" id="userNameText">Admin</div>
+      </div>
+    </header>
+
+    <div class="dashboard-area gs-dash">
+      
+      <!-- Section 1: Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card gs-item">
+          <div class="stat-icon"><i class="fa-solid fa-bullhorn"></i></div>
+          <div class="stat-info">
+            <p>Active Campaigns</p>
+            <h3 class="gs-counter" data-val="14">0</h3>
+          </div>
+        </div>
+        <div class="stat-card gs-item">
+          <div class="stat-icon" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;"><i class="fa-solid fa-money-bill-wave"></i></div>
+          <div class="stat-info">
+            <p>Total Ad Spend</p>
+            <h3 class="gs-counter" data-val="12450">0</h3>
+          </div>
+        </div>
+        <div class="stat-card gs-item">
+          <div class="stat-icon" style="background: rgba(59, 130, 246, 0.1); color: #3b82f6;"><i class="fa-solid fa-hand-pointer"></i></div>
+          <div class="stat-info">
+            <p>Total Clicks</p>
+            <h3 class="gs-counter" data-val="84520">0</h3>
+          </div>
+        </div>
+        <div class="stat-card gs-item">
+          <div class="stat-icon" style="background: rgba(34, 197, 94, 0.1); color: #22c55e;"><i class="fa-solid fa-arrow-trend-up"></i></div>
+          <div class="stat-info">
+            <p>Avg ROI</p>
+            <h3 class="gs-counter" data-val="240">0</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 3: Social Media Metrics -->
+      <div class="panel gs-item" style="background: transparent; box-shadow: none; padding: 0;">
+        <h3 style="margin: 0 0 15px;">Social Engagement</h3>
+        <div class="three-col" style="margin-bottom: 30px;">
+          <div class="social-card gs-item" style="background: var(--secondary);">
+            <div class="social-icon" style="background: #1da1f2;"><i class="fa-brands fa-twitter"></i></div>
+            <div class="social-info">
+              <h4>Followers</h4>
+              <h2>12.4K</h2>
+              <div class="trend up"><i class="fa-solid fa-arrow-up"></i> 5.2%</div>
+            </div>
+          </div>
+          <div class="social-card gs-item" style="background: var(--secondary);">
+            <div class="social-icon" style="background: #0a66c2;"><i class="fa-brands fa-linkedin-in"></i></div>
+            <div class="social-info">
+              <h4>Connections</h4>
+              <h2>8.2K</h2>
+              <div class="trend up"><i class="fa-solid fa-arrow-up"></i> 12.1%</div>
+            </div>
+          </div>
+          <div class="social-card gs-item" style="background: var(--secondary);">
+            <div class="social-icon" style="background: #1877f2;"><i class="fa-brands fa-facebook-f"></i></div>
+            <div class="social-info">
+              <h4>Page Likes</h4>
+              <h2>24.1K</h2>
+              <div class="trend down"><i class="fa-solid fa-arrow-down"></i> 1.4%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <!-- Section 2: Active Campaigns -->
+        <div class="panel gs-item">
+          <div class="panel-header">
+            <h3>Active Campaigns</h3>
+            <button class="btn btn-outline" style="padding: 5px 15px; font-size: 0.8rem;">View All</button>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Campaign Name</th>
+                  <th>Platform</th>
+                  <th>Budget Used</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 500;">Q3 Product Launch</td>
+                  <td>Google Ads</td>
+                  <td>
+                    $4,500 / $10k
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 45%;"></div></div>
+                  </td>
+                  <td><span class="status-dot status-active"></span>Active</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Retargeting Promo</td>
+                  <td>Facebook</td>
+                  <td>
+                    $1,200 / $2k
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 60%; background: #eab308;"></div></div>
+                  </td>
+                  <td><span class="status-dot status-active"></span>Active</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">B2B Lead Gen</td>
+                  <td>LinkedIn</td>
+                  <td>
+                    $3,800 / $5k
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 76%; background: #ef4444;"></div></div>
+                  </td>
+                  <td><span class="status-dot status-active"></span>Active</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 500;">Holiday Special</td>
+                  <td>Email</td>
+                  <td>
+                    $0 / $500
+                    <div class="progress-bar-bg"><div class="progress-bar-fill" style="width: 0%;"></div></div>
+                  </td>
+                  <td><span class="status-dot status-paused"></span>Draft</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <!-- Section 4: Demographics -->
+          <div class="panel gs-item" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3>Audience Age</h3>
+            </div>
+            <div class="demo-bars">
+              <div class="demo-bar-row">
+                <div class="demo-label">18-24</div>
+                <div class="demo-track"><div class="demo-fill" style="width: 15%;"></div></div>
+                <div class="demo-val">15%</div>
+              </div>
+              <div class="demo-bar-row">
+                <div class="demo-label">25-34</div>
+                <div class="demo-track"><div class="demo-fill" style="width: 45%;"></div></div>
+                <div class="demo-val">45%</div>
+              </div>
+              <div class="demo-bar-row">
+                <div class="demo-label">35-44</div>
+                <div class="demo-track"><div class="demo-fill" style="width: 25%;"></div></div>
+                <div class="demo-val">25%</div>
+              </div>
+              <div class="demo-bar-row">
+                <div class="demo-label">45+</div>
+                <div class="demo-track"><div class="demo-fill" style="width: 15%;"></div></div>
+                <div class="demo-val">15%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 5: Quick Actions -->
+          <div class="panel gs-item" style="margin-bottom: 0;">
+            <div class="panel-header">
+              <h3>Quick Actions</h3>
+            </div>
+            <div class="action-grid">
+              <button class="action-btn">
+                <i class="fa-solid fa-plus-circle"></i>
+                <div>Create New Campaign</div>
+              </button>
+              <button class="action-btn">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <div>Draft Newsletter</div>
+              </button>
+              <button class="action-btn">
+                <i class="fa-solid fa-file-import"></i>
+                <div>Import Contacts</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar Toggle
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+          sidebar.classList.toggle('active');
+        });
+      }
+
+      // GSAP Animations
+      gsap.from('.gs-item', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" });
+
+      // Number Counters
+      const counters = document.querySelectorAll('.gs-counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-val'));
+        gsap.to(counter, {
+          innerHTML: target,
+          duration: 1.5,
+          snap: { innerHTML: 1 },
+          onUpdate: function() {
+            let val = Math.round(this.targets()[0].innerHTML);
+            if (target > 1000) { 
+              counter.innerHTML = '$' + (val / 1000).toFixed(1) + 'K'; 
+            } else if (target === 240) {
+              counter.innerHTML = val + '%';
+            } else {
+              counter.innerHTML = val; 
+            }
+          }
+        });
+      });
+
+      // Load dynamic username
+      const storedName = localStorage.getItem('crm_username');
+      if (storedName) {
+        document.getElementById('userNameText').textContent = storedName;
+        document.getElementById('userAvatarText').textContent = storedName.charAt(0).toUpperCase();
+      }
+    });
+  </script>
+</body>
+</html>
