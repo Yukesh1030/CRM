@@ -286,10 +286,11 @@
       <h2 style="color: var(--secondary);">Subscribe to Our Newsletter</h2>
       <p style="color: #94a3b8; max-width: 600px; margin: 0 auto 30px;">Get the latest sales strategies, CRM tips, and product updates delivered to your inbox weekly.</p>
       
-      <div style="max-width: 500px; margin: 0 auto; position: relative;">
-        <input type="email" placeholder="Enter your email address" style="width: 100%; padding: 15px 20px; border-radius: 50px; border: none; font-family: inherit;">
-        <button class="btn btn-primary" style="position: absolute; right: 5px; top: 5px; bottom: 5px;">Subscribe</button>
-      </div>
+      <form id="newsletterForm" style="max-width: 500px; margin: 0 auto; position: relative;">
+        <input type="email" id="newsletterEmail" placeholder="Enter your email address" style="width: 100%; padding: 15px 20px; border-radius: 50px; border: none; font-family: inherit;" required>
+        <button type="submit" class="btn btn-primary" style="position: absolute; right: 5px; top: 5px; bottom: 5px;">Subscribe</button>
+      </form>
+      <div id="newsletterError" style="color: #ff6b6b; margin-top: 10px; display: none; font-size: 0.9rem;">Please enter a valid email address.</div>
     </div>
   </section>
 
@@ -396,6 +397,26 @@
         }
       });
     });
+
+    // Newsletter Validation
+    const newsletterForm = document.getElementById('newsletterForm');
+    const newsletterEmail = document.getElementById('newsletterEmail');
+    const newsletterError = document.getElementById('newsletterError');
+
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(newsletterEmail.value)) {
+          window.location.href = '404.html';
+        } else {
+          newsletterError.style.display = 'block';
+        }
+      });
+      newsletterEmail.addEventListener('input', () => {
+         newsletterError.style.display = 'none';
+      });
+    }
   </script>
 </body>
 </html>

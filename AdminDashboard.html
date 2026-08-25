@@ -145,7 +145,41 @@
             <button class="btn btn-outline" style="padding: 5px 15px; font-size: 0.8rem;">View All</button>
           </div>
           <div class="email-list" id="emailList">
-            <!-- Dynamic Content Injected via JS -->
+            <div class="email-item gs-email">
+              <div class="email-avatar" style="background: #e0e7ff; color: #4338ca;">S</div>
+              <div class="email-content">
+                <h4>Sarah Jenkins <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• Proposal Review</span></h4>
+                <p>Hi team, I reviewed the latest proposal and I have a few questions regarding the pricing model for the enterprise tier.</p>
+              </div>
+              <div class="email-time">10:42 AM</div>
+            </div>
+            
+            <div class="email-item gs-email">
+              <div class="email-avatar" style="background: #dcfce7; color: #15803d;">M</div>
+              <div class="email-content">
+                <h4>Michael Chen <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• New Lead: TechCorp</span></h4>
+                <p>We just got a new inquiry from TechCorp. They are looking to implement a CRM solution within the next 30 days.</p>
+              </div>
+              <div class="email-time">09:15 AM</div>
+            </div>
+            
+            <div class="email-item gs-email">
+              <div class="email-avatar" style="background: #ffedd5; color: #c2410c;">E</div>
+              <div class="email-content">
+                <h4>Emma Watson <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• Follow up required</span></h4>
+                <p>Just a reminder to follow up with DesignStudio regarding their contract renewal. It expires next week.</p>
+              </div>
+              <div class="email-time">Yesterday</div>
+            </div>
+            
+            <div class="email-item gs-email">
+              <div class="email-avatar" style="background: #f3e8ff; color: #7e22ce;">D</div>
+              <div class="email-content">
+                <h4>David Smith <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• Demo Request</span></h4>
+                <p>I would like to schedule a demo of your platform for my marketing team next week.</p>
+              </div>
+              <div class="email-time">Yesterday</div>
+            </div>
           </div>
         </div>
 
@@ -185,29 +219,6 @@
         });
       }
 
-      // Dynamic Emails Array
-      const emails = [
-        { name: 'Sarah Jenkins', avatar: 'S', subject: 'Proposal Review', preview: 'Hi team, I reviewed the latest proposal and I have a few questions regarding the pricing model for the enterprise tier.', time: '10:42 AM' },
-        { name: 'Michael Chen', avatar: 'M', subject: 'New Lead: TechCorp', preview: 'We just got a new inquiry from TechCorp. They are looking to implement a CRM solution within the next 30 days.', time: '09:15 AM' },
-        { name: 'Emma Watson', avatar: 'E', subject: 'Follow up required', preview: 'Just a reminder to follow up with DesignStudio regarding their contract renewal.', time: 'Yesterday' },
-        { name: 'David Smith', avatar: 'D', subject: 'Demo Request', preview: 'I would like to schedule a demo of your platform for my marketing team next week.', time: 'Yesterday' }
-      ];
-
-      const emailList = document.getElementById('emailList');
-      
-      emails.forEach(email => {
-        const item = document.createElement('div');
-        item.className = 'email-item gs-email';
-        item.innerHTML = `
-          <div class="email-avatar">${email.avatar}</div>
-          <div class="email-content">
-            <h4>${email.name} <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• ${email.subject}</span></h4>
-            <p>${email.preview}</p>
-          </div>
-          <div class="email-time">${email.time}</div>
-        `;
-        emailList.appendChild(item);
-      });
 
       // GSAP Animations
       gsap.from('.gs-item', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" });
