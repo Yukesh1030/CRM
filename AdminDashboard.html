@@ -145,7 +145,7 @@
             <button class="btn btn-outline" style="padding: 5px 15px; font-size: 0.8rem;">View All</button>
           </div>
           <div class="email-list" id="emailList">
-            <div class="email-item gs-email">
+            <div class="email-item">
               <div class="email-avatar" style="background: #e0e7ff; color: #4338ca;">S</div>
               <div class="email-content">
                 <h4>Sarah Jenkins <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• Proposal Review</span></h4>
@@ -154,7 +154,7 @@
               <div class="email-time">10:42 AM</div>
             </div>
             
-            <div class="email-item gs-email">
+            <div class="email-item">
               <div class="email-avatar" style="background: #dcfce7; color: #15803d;">M</div>
               <div class="email-content">
                 <h4>Michael Chen <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• New Lead: TechCorp</span></h4>
@@ -163,7 +163,7 @@
               <div class="email-time">09:15 AM</div>
             </div>
             
-            <div class="email-item gs-email">
+            <div class="email-item">
               <div class="email-avatar" style="background: #ffedd5; color: #c2410c;">E</div>
               <div class="email-content">
                 <h4>Emma Watson <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• Follow up required</span></h4>
@@ -172,7 +172,7 @@
               <div class="email-time">Yesterday</div>
             </div>
             
-            <div class="email-item gs-email">
+            <div class="email-item">
               <div class="email-avatar" style="background: #f3e8ff; color: #7e22ce;">D</div>
               <div class="email-content">
                 <h4>David Smith <span style="font-weight: 400; font-size: 0.85rem; color: var(--accent);">• Demo Request</span></h4>
@@ -222,7 +222,6 @@
 
       // GSAP Animations
       gsap.from('.gs-item', { y: 20, opacity: 0, stagger: 0.1, duration: 0.6, ease: "power2.out" });
-      gsap.from('.gs-email', { x: -20, opacity: 0, stagger: 0.1, duration: 0.5, ease: "power2.out", delay: 0.3 });
 
       // Number Counters
       const counters = document.querySelectorAll('.gs-counter');
