@@ -65,6 +65,8 @@
     }
     @media (max-width: 576px) {
       .search-box { display: none; }
+      .top-header { justify-content: center; position: relative; }
+      .top-header > div:first-child { position: absolute; left: 20px; }
     }
   </style>
 </head>
@@ -240,12 +242,6 @@
         });
       });
 
-      // Load dynamic username
-      const storedName = localStorage.getItem('crm_username');
-      if (storedName) {
-        document.getElementById('userNameText').textContent = storedName;
-        document.getElementById('userAvatarText').textContent = storedName.charAt(0).toUpperCase();
-      }
     });
   </script>
 <script>document.addEventListener('DOMContentLoaded', () => {
