@@ -90,7 +90,7 @@
       <button class="mobile-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
       <div class="user-profile">
         <div class="user-avatar" id="userAvatarText">C</div>
-        <div style="font-weight: 500;" id="userNameText">Client</div>
+        <div style="font-weight: 500;" id="userNameText">Client User</div>
       </div>
     </header>
 
@@ -194,6 +194,13 @@
         });
       });
 
+      // Load dynamic username
+      const storedName = localStorage.getItem('crm_username');
+      if (storedName) {
+        document.getElementById('userNameText').textContent = storedName;
+        document.getElementById('userAvatarText').textContent = storedName.charAt(0).toUpperCase();
+        document.getElementById('welcomeText').textContent = `Welcome back, ${storedName}!`;
+      }
     });
   </script>
 <script>document.addEventListener('DOMContentLoaded', () => {
